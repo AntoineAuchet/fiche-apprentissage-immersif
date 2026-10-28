@@ -18,6 +18,7 @@ démonstration de compétences en vulgarisation scientifique et en développemen
 
 <img width="945" height="478" alt="Fiche Apprentissage Immersif Intro" src="https://github.com/user-attachments/assets/1f81e900-e5e2-4057-bdbd-725089b707e3" />
 Capture d'écran : Introduction de la fiche d'apprentissage immersif
+
 ---
 
 ## 🎯 Contexte & objectifs
