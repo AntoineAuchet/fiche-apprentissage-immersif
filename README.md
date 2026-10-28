@@ -1,9 +1,15 @@
 # 🧠 Fiche — Apprentissage multimédia & environnements immersifs
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/1f81e900-e5e2-4057-bdbd-725089b707e3" alt="Fiche Apprentissage Immersif — Introduction" width="850">
+</p>
+<p align="center"><em>Capture d'écran : introduction de la fiche d'apprentissage immersif</em></p>
+
 ![HTML5](https://img.shields.io/badge/HTML5-plain-%23E34F26?logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-plain-%231572B6?logo=css3&logoColor=white)
 ![No dependencies](https://img.shields.io/badge/dépendances-0-success)
 ![Accessibilité](https://img.shields.io/badge/accessibilit%C3%A9-WCAG%202.1%20AA-blue)
+![Licence](https://img.shields.io/badge/licence-CC%20BY%204.0-informational)
 
 **Fiche de synthèse interactive** reliant la théorie de l'apprentissage multimédia (**CTML**, Mayer), la
 théorie de la **charge cognitive** (Sweller) et le modèle **CAMIL** (Makransky), jusqu'à la tension centrale
@@ -15,9 +21,6 @@ et l'évaluation de dispositifs d'apprentissage immersifs (VR/XR, jumeaux numér
 démonstration de compétences en vulgarisation scientifique et en développement front-end accessible.
 
 ➡️ **Version en ligne :** <https://antoineau.github.io/fiche-apprentissage-immersif/>
-
-<img width="945" height="478" alt="Fiche Apprentissage Immersif Intro" src="https://github.com/user-attachments/assets/1f81e900-e5e2-4057-bdbd-725089b707e3" />
-Capture d'écran : Introduction de la fiche d'apprentissage immersif
 
 ---
 
@@ -87,6 +90,13 @@ open index.html   # macOS — ou double-clic dans un explorateur de fichiers
 - Makransky, G., & Petersen, G. B. (2021). The Cognitive Affective Model of Immersive Learning (CAMIL). *Educational Psychology Review*, 33(3), 937–958.
 - Kahneman, D. (2011). *Thinking, Fast and Slow*. Farrar, Straus and Giroux.
 - Anderson, L. W., & Krathwohl, D. R. (dir.) (2001). *A Taxonomy for Learning, Teaching, and Assessing: A Revision of Bloom's Taxonomy of Educational Objectives*. Longman.
+
+## 📄 Licence
+
+Contenu et code mis à disposition sous la licence
+[Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.fr) —
+voir le fichier [LICENSE](LICENSE) pour le texte complet. Vous êtes libre de réutiliser et d'adapter ce
+travail, à condition d'en citer l'auteur.
 
 ## 👤 Auteur
 
