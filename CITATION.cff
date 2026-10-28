@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "Merci de citer ce travail si vous le réutilisez."
+title: "Fiche — Apprentissage multimédia & environnements immersifs"
+abstract: >-
+  Fiche de synthèse interactive reliant la théorie de l'apprentissage
+  multimédia (CTML, Mayer), la théorie de la charge cognitive (Sweller) et le
+  modèle CAMIL (Makransky & Petersen), jusqu'à la tension présence / charge
+  cognitive et aux biais qui la masquent. Inclut un simulateur interactif
+  immersion × qualité de conception pédagogique.
+authors:
+  - family-names: "Auchet"
+    given-names: "Antoine"
+    email: "antoine.auchet@proton.me"
+repository-code: "https://github.com/AntoineAu/fiche-apprentissage-immersif"
+url: "https://antoineau.github.io/fiche-apprentissage-immersif/"
+keywords:
+  - multimedia learning
+  - cognitive load theory
+  - immersive learning
+  - virtual reality
+  - instructional design
+  - UX research
+license: "CC-BY-4.0"
+type: software
