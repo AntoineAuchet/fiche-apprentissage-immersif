@@ -21,7 +21,7 @@ recherche en un outil opérationnel : elle sert à la fois de synthèse de réf�
 et l'évaluation de dispositifs d'apprentissage immersifs (VR/XR, jumeaux numériques, EdTech), et de
 démonstration de compétences en vulgarisation scientifique et en développement front-end accessible.
 
-➡️ **Version en ligne :** <https://antoineau.github.io/fiche-apprentissage-immersif/>
+➡️ **Version en ligne :** <https://antoineauchet.github.io/fiche-apprentissage-immersif/>
 
 ---
 
