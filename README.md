@@ -182,5 +182,5 @@ travail, à condition d'en citer l'auteur.
 dispositifs d'apprentissage immersifs et numériques (VR/XR, jumeaux numériques, EdTech).
 
 - 💼 [LinkedIn](https://www.linkedin.com/in/antoine-auchet/) · [Malt](https://www.malt.fr/profile/antoineauchet)
-- 🧑‍💻 [GitHub](https://github.com/AntoineAu)
+- 🧑‍💻 [GitHub](https://github.com/AntoineAuchet)
 - 📫 antoine.auchet@proton.me
