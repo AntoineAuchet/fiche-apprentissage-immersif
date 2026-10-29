@@ -5,7 +5,7 @@
 </p>
 <p align="center"><em>Capture d'écran : introduction de la fiche d'apprentissage immersif</em></p>
 
-[![Site en ligne](https://img.shields.io/badge/site-en%20ligne-2ea44f?logo=githubpages&logoColor=white)](https://antoineau.github.io/fiche-apprentissage-immersif/)
+[![Site en ligne](https://img.shields.io/badge/site-en%20ligne-2ea44f?logo=githubpages&logoColor=white)](https://antoineauchet.github.io/fiche-apprentissage-immersif/)
 ![HTML5](https://img.shields.io/badge/HTML5-vanilla-%23E34F26?logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-vanilla-%231572B6?logo=css3&logoColor=white)
 ![Dépendances](https://img.shields.io/badge/d%C3%A9pendances-0-success)
@@ -123,7 +123,7 @@ Conçue selon une démarche d'ergonomie cognitive appliquée à la lecture à l'
 Aucune installation : télécharger `index.html` et l'ouvrir dans un navigateur, ou cloner le dépôt :
 
 ```bash
-git clone https://github.com/AntoineAu/fiche-apprentissage-immersif.git
+git clone https://github.com/antoineauchet/fiche-apprentissage-immersif.git
 open index.html   # macOS — ou double-clic dans un explorateur de fichiers
 ```
 
@@ -154,8 +154,8 @@ des métadonnées du fichier [`CITATION.cff`](CITATION.cff). En BibTeX :
   title        = {Fiche — Apprentissage multimédia et environnements immersifs},
   year         = {2026},
   howpublished = {Fiche interactive en ligne},
-  url          = {https://antoineau.github.io/fiche-apprentissage-immersif/},
-  note         = {Code : https://github.com/AntoineAu/fiche-apprentissage-immersif — licence CC BY 4.0}
+  url          = {https://antoineauchet.github.io/fiche-apprentissage-immersif/},
+  note         = {Code : https://github.com/antoineauchet/fiche-apprentissage-immersif — licence CC BY 4.0}
 }
 ```
 
@@ -167,7 +167,7 @@ Sweller's **Cognitive Load Theory** and the **CAMIL** model (Makransky & Peterse
 dependency-free HTML file, designed for **WCAG 2.1 AA** accessibility (full keyboard navigation, ARIA
 roles, reduced-motion support, light/dark themes) and deployed via GitHub Pages. An interactive
 simulator explores how immersion and instructional design jointly shape cognitive load, presence and
-learning outcomes. Live version: <https://antoineau.github.io/fiche-apprentissage-immersif/>.
+learning outcomes. Live version: <https://antoineauchet.github.io/fiche-apprentissage-immersif/>.
 
 ## 📄 Licence
 
