@@ -325,61 +325,56 @@
   #interp strong{color:var(--text);}
 
   /* ---------- PRINCIPLE CARDS ---------- */
-  .principle-groups{ display:flex; flex-direction:column; gap:36px; }
-  .pg-header{ display:flex; align-items:baseline; gap:10px; margin-bottom:14px;}
-  .pg-header .tag{ font-family:var(--mono); font-size:.68rem; padding:3px 9px; border-radius:20px; text-transform:uppercase; letter-spacing:.05em;}
-  .tag.reduce{ background:var(--amber-dim); color:var(--amber);}
-  .tag.manage{ background:var(--violet-dim); color:var(--violet);}
-  .tag.foster{ background:var(--teal-dim); color:var(--teal);}
-  .card-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); gap:14px;}
-  .p-card{
-    background:var(--bg-card); border:1px solid var(--line); border-radius:12px; padding:16px 18px;
-    cursor:pointer; transition:.15s;
-  }
-  .p-card:hover{ border-color:var(--text-faint); }
-  .p-card .p-name{ font-weight:600; font-size:.96rem; color:var(--text); margin-bottom:4px;}
-  .p-card .p-gauge{ display:flex; align-items:center; gap:8px; margin:8px 0; }
-  .p-gauge .dots{ display:flex; gap:3px; }
-  .p-gauge .dot{ width:7px; height:7px; border-radius:50%; background:var(--line); }
-  .p-gauge .dot.on{ background:var(--amber); }
-  .p-gauge .gauge-label{ font-family:var(--mono); font-size:.65rem; color:var(--text-faint); text-transform:uppercase; }
-  .p-card .p-hint{ font-size:.72rem; color:var(--text-faint); font-family:var(--mono); }
-  .p-card{ background:color-mix(in srgb, var(--c, var(--violet)) 6%, var(--bg-card)); }
-  .p-card:hover{ border-color:var(--c, var(--text-faint)); }
-  .p-card{
-    border:1px solid var(--line); border-top:3px solid var(--c, var(--violet));
-    border-radius:12px; padding:16px 18px; cursor:pointer; transition:.15s;
-  }
-  .p-card .p-name{ font-weight:600; font-size:.96rem; color:var(--text); margin-bottom:4px;}
-  .p-card .p-def{ font-size:.82rem; color:var(--text-faint); margin-bottom:2px; }
-  .p-card .p-detail{ display:none; font-size:.85rem; margin-top:8px; padding-top:8px; border-top:1px solid var(--line); color:var(--text-dim);}
-  .p-card.open .p-detail{ display:block; }
-  .p-card.acc, .p-card.has-detail{ cursor:pointer; }
-  .p-card.acc .p-detail{ display:none; margin-top:8px; padding-top:8px; border-top:1px solid var(--line); color:var(--text-dim); font-size:.88rem; }
-  .p-card.acc.open .p-detail{ display:block; }
-  /* ---------- Bloc « Points de vigilance » (cartés titres + texte à la ligne) ---------- */
-  .vigilance{
-    background:color-mix(in srgb, var(--c, var(--violet)) 6%, var(--bg-card));
-    border:1px solid var(--line); border-top:3px solid var(--c, var(--violet));
-    border-radius:12px; padding:16px 18px; transition:.15s;
-  }
-  .vigilance:hover{ border-color:var(--c, var(--text-faint)); }
-  .vigilance .p-name{ font-weight:600; font-size:.96rem; color:var(--text); margin-bottom:6px; }
-  .vigilance .p-text{ font-size:.86rem; color:var(--text-dim); line-height:1.5; }
-  /* Effet sur les cartes à 2nd niveau (cliquables / dépliables) : chevron fin */
-  /* La flèche n'apparaît QUE si la carte possède un 2nd niveau (.has-detail, posé en JS) */
-  .p-card.acc, .triad-card.acc{ position:relative; }
-  .p-card.has-detail::after, .triad-card.acc.has-detail::after{
-    content:""; position:absolute; top:18px; right:18px;
-    width:7px; height:7px;
-    border-right:1.5px solid var(--c, var(--text-faint));
-    border-bottom:1.5px solid var(--c, var(--text-faint));
-    transform:rotate(45deg); /* pointe en bas = replié */
-    opacity:.4; pointer-events:none;
-    transition:transform .2s ease, opacity .2s ease;
-  }
-  .p-card.has-detail:hover::after, .triad-card.acc.has-detail:hover::after{ opacity:1; }
-  .p-card.has-detail.open::after, .triad-card.acc.has-detail.open::after{ transform:rotate(225deg); opacity:1; } /* pointe en haut = déplié */
+    .principle-groups{ display:flex; flex-direction:column; gap:36px; }
+    .pg-header{ display:flex; align-items:baseline; gap:10px; margin-bottom:14px;}
+    .pg-header .tag{ font-family:var(--mono); font-size:.68rem; padding:3px 9px; border-radius:20px; text-transform:uppercase; letter-spacing:.05em;}
+    .tag.reduce{ background:var(--amber-dim); color:var(--amber);}
+    .tag.manage{ background:var(--violet-dim); color:var(--violet);}
+    .tag.foster{ background:var(--teal-dim); color:var(--teal);}
+    .card-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); gap:14px;}
+    .p-card{
+          background:var(--bg-card); /* fallback for Safari < 16.2 */
+          background:color-mix(in srgb, var(--c, var(--violet)) 6%, var(--bg-card));
+          border:1px solid var(--line); border-top:3px solid var(--c, var(--violet));
+          border-radius:12px; padding:16px 18px; cursor:pointer; transition:.15s;
+        }
+        .p-card:hover{ border-color:var(--c, var(--text-faint)); }
+        .p-card .p-name{ font-weight:600; font-size:.96rem; color:var(--text); margin-bottom:4px;}
+        .p-card .p-gauge{ display:flex; align-items:center; gap:8px; margin:8px 0; }
+        .p-gauge .dots{ display:flex; gap:3px; }
+        .p-gauge .dot{ width:7px; height:7px; border-radius:50%; background:var(--line); }
+        .p-gauge .dot.on{ background:var(--amber); }
+        .p-gauge .gauge-label{ font-family:var(--mono); font-size:.65rem; color:var(--text-faint); text-transform:uppercase; }
+        .p-card .p-hint{ font-size:.72rem; color:var(--text-faint); font-family:var(--mono); }
+        .p-card .p-def{ font-size:.82rem; color:var(--text-faint); margin-bottom:2px; }
+        .p-card .p-detail{ display:none; font-size:.85rem; margin-top:8px; padding-top:8px; border-top:1px solid var(--line); color:var(--text-dim);}
+        .p-card.open .p-detail{ display:block; }
+        .p-card.acc, .p-card.has-detail{ cursor:pointer; }
+    /* ---------- Bloc « Points de vigilance » (cartés titres + texte à la ligne) ---------- */
+    .vigilance{
+      background:color-mix(in srgb, var(--c, var(--violet)) 6%, var(--bg-card));
+      background:var(--bg-card); /* fallback for Safari < 16.2 */
+      background:color-mix(in srgb, var(--c, var(--violet)) 6%, var(--bg-card));
+      border:1px solid var(--line); border-top:3px solid var(--c, var(--violet));
+      border-radius:12px; padding:16px 18px; transition:.15s;
+    }
+    .vigilance:hover{ border-color:var(--c, var(--text-faint)); }
+    .vigilance .p-name{ font-weight:600; font-size:.96rem; color:var(--text); margin-bottom:6px; }
+    .vigilance .p-text{ font-size:.86rem; color:var(--text-dim); line-height:1.5; }
+    /* Effet sur les cartes à 2nd niveau (cliquables / dépliables) : chevron fin */
+    /* La flèche n'apparaît QUE si la carte possède un 2nd niveau (.has-detail, posé en JS) */
+    .p-card.acc, .triad-card.acc{ position:relative; }
+    .p-card.has-detail::after, .triad-card.acc.has-detail::after{
+      content:""; position:absolute; top:18px; right:18px;
+      width:7px; height:7px;
+      border-right:1.5px solid var(--c, var(--text-faint));
+      border-bottom:1.5px solid var(--c, var(--text-faint));
+      transform:rotate(45deg); /* pointe en bas = replié */
+      opacity:.4; pointer-events:none;
+      transition:transform .2s ease, opacity .2s ease;
+    }
+    .p-card.has-detail:hover::after, .triad-card.acc.has-detail:hover::after{ opacity:1; }
+    .p-card.has-detail.open::after, .triad-card.acc.has-detail.open::after{ transform:rotate(225deg); opacity:1; } /* pointe en haut = déplié */
   /* 12 principes de Mayer : couleurs du slider (Intro), mélangees par carte pour un rendu équilibré */
   /* Groupe 1 « Réduire » (7 cartes) : R / G / T en alternance */
   #principes .principle-groups > div:nth-of-type(1) .p-card:nth-of-type(1){ --c:#e87474; }
@@ -405,7 +400,7 @@
   #principes .principle-groups > div:nth-of-type(3) .p-card:nth-of-type(5){ --c:#6d7a8a; }
 
   .triad{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:24px;}
-  .triad-card{ background:var(--bg-card); border:1px solid var(--line); border-radius:12px; padding:20px; border-top:3px solid var(--c);}
+  .triad-card{ background:var(--bg-card); border:1px solid var(--line); border-radius:12px; padding:20px; border-top:3px solid var(--c, var(--violet));}
   .triad-card h3{ margin-bottom:6px; }
   .triad-card p{ font-size:.88rem; }
   .triad-card.acc{ cursor:pointer; }
@@ -447,7 +442,7 @@
     background:var(--bg-card); border:1px solid var(--line); border-radius:12px; padding:16px 18px;
     min-width:190px; flex:1; position:relative;
   }
-  .camil-step h4{ margin:0 0 6px; font-size:.82rem; font-family:var(--mono); text-transform:uppercase; letter-spacing:.04em; color:var(--teal);}
+  .camil-step h3{ margin:0 0 6px; font-size:.82rem; font-family:var(--mono); text-transform:uppercase; letter-spacing:.04em; color:var(--teal);}
   .camil-step p{ font-size:.83rem; margin:0;}
   .camil-arrow{ display:flex; align-items:center; justify-content:center; width:34px; color:var(--text-faint); font-size:1.3rem; flex-shrink:0;}
 
@@ -626,14 +621,9 @@
   .measure-tag{ font-family:var(--mono); font-size:.64rem; text-transform:uppercase; letter-spacing:.05em; padding:3px 9px; border-radius:20px; color:var(--c); background:color-mix(in srgb, var(--c) 14%, transparent); white-space:nowrap; }
   .measure-detail{ display:none; margin-top:12px; padding-top:12px; border-top:1px solid var(--line); font-size:.9rem; color:var(--text-dim); }
   .measure.open .measure-detail{ display:block; }
-  .measure-detail p{ margin:0 0 10px; }
+    .measure-detail p{ margin:0 0 10px; }
 
-  /* ---------- ACCORDÉON (cartes cognitives / biais) ---------- */
-  .p-card.acc, .p-card.has-detail{ cursor:pointer; }
-  .p-card.acc .p-detail{ display:none; margin-top:8px; padding-top:8px; border-top:1px solid var(--line); color:var(--text-dim); font-size:.88rem; }
-  .p-card.acc.open .p-detail{ display:block; }
-
-  /* ---------- IMPRESSION / EXPORT PDF ---------- */
+    /* ---------- IMPRESSION / EXPORT PDF ---------- */
   @media print{
     :root, html, body{ --bg:#fff; --bg-card:#fff; --bg-raised:#fff; --line:#ccc; --text:#000; --text-dim:#222; --text-faint:#555; }
     .read-progress-track, .read-progress, .to-top, .theme-toggle, .nav-toggle, .skip-link,
@@ -667,7 +657,7 @@
 <nav class="side" id="sideNav">
   <button class="nav-toggle" id="navToggle" aria-label="Afficher / masquer le sommaire" aria-expanded="true">☰ Sommaire</button>
   <div class="nav-crumb" id="navCrumb" aria-hidden="true">Vous êtes dans : <b id="navCrumbText">Introduction</b></div>
-  <div class="brand">Multimédia & Immersion<small>Fiche de synthèse · recherche</small></div>
+  <div class="brand">Multimédia &amp; Immersion</div>
   <ul>
     <li><a href="#intro">Introduction</a></li>
     <li class="grp-label">Socle théorique</li>
@@ -676,13 +666,14 @@
     <li><a href="#charge">Triade de charge cognitive</a></li>
     <li><a href="#system12">Système 1 / Système 2 (Kahneman)</a></li>
     <li><a href="#bloom">Taxonomie de Bloom</a></li>
-    <li class="grp-label">Immersion</li>
+    <li class="grp-label">Recherche sur l’immersion</li>
     <li><a href="#camil">Modèle CAMIL</a></li>
     <li><a href="#cognition-immersion">Attention, mémoire, corps</a></li>
     <li><a href="#biais">Biais cognitifs</a></li>
     <li><a href="#tension">La tension centrale</a></li>
+    <li class="grp-label">Synthèse interactive</li>
     <li><a href="#simulateur">Simulateur interactif</a></li>
-    <li class="grp-label">Application</li>
+    <li class="grp-label">Application pratique</li>
     <li><a href="#ux-immersive">UX en environnement immersif</a></li>
     <li><a href="#arbre">Arbre de décision</a></li>
     <li><a href="#checklist">Checklist projet XR</a></li>
@@ -739,37 +730,37 @@
   <section id="ctml">
     <div class="eyebrow">Socle théorique</div>
     <h2>La théorie cognitive de l'apprentissage multimédia (CTML)</h2>
-    <p class="section-intro">Mayer construit la CTML sur trois hypothèses issues de la psychologie cognitive, communes à tout support d'apprentissage — écran ou casque VR.</p>
+    <p class="section-intro">Mayer construit la CTML sur trois hypothèses issues de la psychologie cognitive, communes à tout support d'apprentissage — écran ou casque VR (Mayer (2005) <a class="reflink" href="#ref-mayer-2005-ctml">↗</a>).</p>
     <div class="triad">
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false" style="--c:var(--amber)">
         <h3>Double canal</h3>
         <p>Information visuelle/spatiale et verbale/auditive traitées par deux canaux séparés en mémoire de travail.</p>
         <div class="p-detail">
           <p>Chaque canal a sa propre limite : le visuel gère schéma et espace, l'auditif gère parole et sons. Les associer (image + voix) double la capacité utile ; les empiler sur un seul canal (image + texte lu) la réduit. En VR, une étiquette écrite au-dessus d'un objet 3D oblige ce canal à faire deux tâches à la fois.</p>
-          <p class="triad-practice">→ en pratique : en VR, répartis l'information entre les deux canaux — ne pas saturer le canal visuel avec du texte à lire pendant qu'une animation joue.</p>
+          <p class="triad-practice">→ en pratique : en VR, répartir l'information entre les deux canaux — ne pas saturer le canal visuel avec du texte à lire pendant qu'une animation joue.</p>
           <p class="triad-source">Paivio (1986) · Baddeley (2000)</p>
-          <p class="triad-link">Principes liés : <a href="#principes">contiguïté spatiale</a>, <a href="#principes">contiguïté temporelle</a>, <a href="#principes">Redondance</a></p>
-         <a class="reflink" href="#ref-baddeley-1974">↗</a></div>
+          <p class="triad-link">Principes liés : <a href="#principes">contiguïté spatiale</a>, <a href="#principes">contiguïté temporelle</a>, <a href="#principes">redondance</a></p>
+         <a class="reflink" href="#ref-paivio-1986">↗</a> <a class="reflink" href="#ref-baddeley-2000">↗</a></div>
       </div>
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false" style="--c:var(--violet)">
         <h3>Capacité limitée</h3>
         <p>Chaque canal ne traite qu'une quantité restreinte d'information à la fois — d'où l'enjeu de la charge cognitive.</p>
         <div class="p-detail">
-          <p>La mémoire de travail ne retient qu'un nombre restreint d'éléments (Miller, ~4) pendant quelques secondes. Au-delà, le traitement nouveau écrase l'ancien ou reste superficiel. Or la RV ajoute en permanence des éléments à gérer : avatar du corps, menus flottants, déplacement libre, bruit ambiant — chacun consomme une part de la capacité laissée au fond.</p>
-          <p class="triad-practice">→ en pratique : borne le nombre d'éléments à traiter simultanément ; la RV ajoute du monde/des contrôles — chaque ajout coûte de la capacité.</p>
-          <p class="triad-source">Sweller (1988) · Chandler & Sweller (1991)</p>
-          <p class="triad-link">Principes liés : <a href="#principes">cohérence</a>, <a href="#principes">signalisation</a>, <a href="#principes">Redondance</a></p>
-         <a class="reflink" href="#ref-sweller-1988">↗</a></div>
+          <p>La mémoire de travail ne retient qu'un nombre restreint d'éléments (Cowan (2001) : ~4 éléments) pendant quelques secondes. Au-delà, le traitement nouveau écrase l'ancien ou reste superficiel. Or la VR ajoute en permanence des éléments à gérer : avatar du corps, menus flottants, déplacement libre, bruit ambiant — chacun consomme une part de la capacité laissée au fond.</p>
+          <p class="triad-practice">→ en pratique : limiter le nombre d'éléments à traiter simultanément ; la VR ajoute des éléments d'environnement et de contrôle — chaque ajout coûte de la capacité.</p>
+          <p class="triad-source">Sweller (1988) · Chandler & Sweller (1991) · Cowan (2001)</p>
+          <p class="triad-link">Principes liés : <a href="#principes">cohérence</a>, <a href="#principes">signalisation</a>, <a href="#principes">redondance</a></p>
+         <a class="reflink" href="#ref-sweller-1988">↗</a> <a class="reflink" href="#ref-chandler-1991">↗</a> <a class="reflink" href="#ref-cowan-2001">↗</a></div>
       </div>
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false" style="--c:var(--teal)">
         <h3>Traitement actif</h3>
         <p>Apprendre exige une sélection, organisation et intégration actives de l'information (traitement génératif).</p>
         <div class="p-detail">
-          <p>Comprendre = relier l'information nouvelle aux connaissances déjà en mémoire à long terme (construction de schémas). Une RV purement « spectacle » laisse le cerveau en mode consommateur : l'élève voit sans construire. L'agentivité (manipuler, décider, expliquer) force ce traitement génératif — c'est le levier que le modèle CAMIL mesure par la présence.</p>
-          <p class="triad-practice">→ en pratique : l'immersion doit faire AGIR l'élève, pas seulement regarder — l'agentivité (CAMIL) alimente ce traitement génératif.</p>
-          <p class="triad-source">Mayer (2009) · Fiorella & Mayer (2015)</p>
+          <p>Comprendre = relier l'information nouvelle aux connaissances déjà en mémoire à long terme (construction de schémas). Une VR purement « spectacle » laisse le cerveau en mode consommateur : l'élève voit sans construire. L'agentivité (manipuler, décider, expliquer) force ce traitement génératif — c'est le levier que le modèle CAMIL mesure par l'agentivité perçue, un état psychologique distinct de la présence (Makransky &amp; Petersen, 2021).</p>
+          <p class="triad-practice">→ en pratique : faire agir l'élève par l'immersion, pas seulement regarder — l'agentivité (CAMIL) alimente ce traitement génératif.</p>
+          <p class="triad-source">Mayer (2014) · Fiorella &amp; Mayer (2015)</p>
           <p class="triad-link">Principes liés : <a href="#principes">personnalisation</a>, <a href="#principes">Image / incarnation</a></p>
-         <a class="reflink" href="#ref-mayer-2005">↗</a></div>
+         <a class="reflink" href="#ref-mayer-2014">↗</a> <a class="reflink" href="#ref-fiorella-mayer-2015">↗</a></div>
       </div>
       </section>
 
@@ -777,9 +768,9 @@
   <section id="principes">
     <div class="eyebrow">Socle théorique</div>
     <h2>Les 12 principes de Mayer</h2>
-    <p class="section-intro">Regroupés par fonction cognitive. Le nombre de points ambre indique la robustesse relative de l'effet dans les méta-analyses (Mayer & Fiorella) — repère qualitatif, pas une statistique précise. Clique une carte pour déplier le détail.</p>
+    <p class="section-intro">Les 12 principes de la formulation classique de la CTML (Mayer (2005) ; Mayer (2024), tableau 6). La synthèse de Mayer (2024) en distingue 15 ; les 12 présentés ici regroupent l'incarnation avec le principe d'image. Le nombre de points ambre indique la robustesse relative de l'effet, d'après les effect sizes rapportés par Mayer (2024) — repère qualitatif. (<i>d</i> = taille d’effet standardisée ; plus la valeur est élevée, plus l’effet est marqué.) Sélectionner une carte pour afficher le détail.</p>
 
-    <div class="principle-groups">
+        <div class="principle-groups">
 
       <div>
         <div class="pg-header"><span class="tag reduce">Réduire le traitement superflu</span></div>
@@ -787,57 +778,56 @@
           <div class="p-card" data-dots="3">
             <div class="p-name">Cohérence</div>
             <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet fort</span></div>
-            <div class="p-hint">+ toucher pour détail</div>
-            <div class="p-detail">Exclure mots, images ou sons intéressants mais non essentiels. Chaque élément supplémentaire consomme des ressources sans servir l'objectif pédagogique. <a class="reflink" href="#ref-mayer-2005">↗</a></div>
+            <div class="p-hint">Sélectionner pour le détail</div>
+            <div class="p-detail">Exclure mots, images ou sons intéressants mais non essentiels. Chaque élément supplémentaire consomme des ressources sans servir l'objectif pédagogique. <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 0,86)</span> <a class="reflink" href="#ref-mayer-2024">↗</a> <a class="reflink" href="#ref-mayer-fiorella-2014">↗</a></div>
           </div>
-          <div class="p-card" data-dots="3">
+          <div class="p-card" data-dots="2">
             <div class="p-name">Signalisation</div>
-            <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet fort</span></div>
-            <div class="p-hint">+ toucher pour détail</div>
-            <div class="p-detail">Ajouter des repères (flèches, surlignage, titres) qui guident l'attention vers l'information essentielle et sa structure. <a class="reflink" href="#ref-mayer-2005">↗</a></div>
-          </div>
-          <div class="p-card" data-dots="2">
-            <div class="p-name">Redondance</div>
             <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet modéré</span></div>
-            <div class="p-hint">+ toucher pour détail</div>
-            <div class="p-detail">Éviter de présenter le même texte à l'écran et à l'oral en même temps qu'une image : le canal visuel est alors saturé par la lecture et l'image. <a class="reflink" href="#ref-mayer-2005">↗</a></div>
+            <div class="p-hint">Sélectionner pour le détail</div>
+            <div class="p-detail">Ajouter des repères (flèches, surlignage, titres) qui guident l'attention vers l'information essentielle et sa structure. <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 0,69)</span> <a class="reflink" href="#ref-mayer-2024">↗</a></div>
           </div>
-          <div class="p-card" data-dots="2">
-            <div class="p-name">Contiguïté spatiale</div>
-            <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet modéré</span></div>
-            <div class="p-hint">+ toucher pour détail</div>
-            <div class="p-detail">Placer le texte près de l'élément graphique qu'il décrit, pour éviter une recherche visuelle coûteuse (effet d'attention partagée). <a class="reflink" href="#ref-mayer-2005">↗</a></div>
-          </div>
-          <div class="p-card" data-dots="2">
-            <div class="p-name">Contiguïté temporelle</div>
-            <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet modéré</span></div>
-            <div class="p-hint">+ toucher pour détail</div>
-            <div class="p-detail">Présenter narration et animation correspondantes simultanément plutôt que successivement. <a class="reflink" href="#ref-mayer-2005">↗</a></div>
+          <div class="p-card" data-dots="1">
+            <div class="p-name">redondance</div>
+            <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet faible</span></div>
+            <div class="p-hint">Sélectionner pour le détail</div>
+            <div class="p-detail">Éviter de présenter le même texte à l'écran et à l'oral en même temps qu'une image : le canal visuel est alors saturé par la lecture et l'image. <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 0,10)</span> <a class="reflink" href="#ref-mayer-2024">↗</a></div>
           </div>
           <div class="p-card" data-dots="3">
-            <div class="p-name">Segmentation</div>
+            <div class="p-name">Contiguïté spatiale</div>
             <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet fort</span></div>
-            <div class="p-hint">+ toucher pour détail</div>
-            <div class="p-detail">Découper une leçon continue en segments courts contrôlés par l'apprenant, plutôt qu'une unité continue imposée. <a class="reflink" href="#ref-mayer-2005">↗</a></div>
+            <div class="p-hint">Sélectionner pour le détail</div>
+            <div class="p-detail">Placer le texte près de l'élément graphique qu'il décrit, pour éviter une recherche visuelle coûteuse (effet d'attention partagée). <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 0,82)</span> <a class="reflink" href="#ref-mayer-2024">↗</a></div>
           </div>
-          <div class="p-card" data-dots="2">
-            <div class="p-name">Pré-entraînement</div>
-            <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet modéré</span></div>
-            <div class="p-hint">+ toucher pour détail</div>
-            <div class="p-detail">Enseigner en amont le nom et les caractéristiques des concepts clés, pour libérer des ressources lors de l'apprentissage principal — particulièrement pertinent en VR pour dissocier la découverte de l'interface de l'apprentissage du contenu. <a class="reflink" href="#ref-mayer-2005">↗</a></div>
+          <div class="p-card" data-dots="3">
+            <div class="p-name">Contiguïté temporelle</div>
+            <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet fort</span></div>
+            <div class="p-hint">Sélectionner pour le détail</div>
+            <div class="p-detail">Présenter narration et animation correspondantes simultanément plutôt que successivement. <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 1,31)</span> <a class="reflink" href="#ref-mayer-2024">↗</a></div>
           </div>
         </div>
       </div>
 
       <div>
         <div class="pg-header"><span class="tag manage">Gérer le traitement essentiel</span></div>
-        <p style="font-size:.85rem; color:var(--text-faint); margin:-6px 0 12px; max-width:640px;">Ce groupe est volontairement resserré : chez Mayer, la <b>modalité</b> est le principe central de gestion du traitement essentiel. La segmentation et le pré-entraînement (classés ici « réduire ») y contribuent aussi selon les éditions — la taxonomie répartit l'effort, elle ne le distribue pas à parts égales.</p>
         <div class="card-grid">
+          <div class="p-card" data-dots="2">
+            <div class="p-name">Segmentation</div>
+            <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet modéré</span></div>
+            <div class="p-hint">Sélectionner pour le détail</div>
+            <div class="p-detail">Découper une leçon continue en segments courts contrôlés par l'apprenant, plutôt qu'une unité continue imposée. <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 0,67)</span> <a class="reflink" href="#ref-mayer-2024">↗</a> <a class="reflink" href="#ref-mayer-pilegard-2014">↗</a></div>
+          </div>
+          <div class="p-card" data-dots="2">
+            <div class="p-name">Pré-entraînement</div>
+            <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet modéré</span></div>
+            <div class="p-hint">Sélectionner pour le détail</div>
+            <div class="p-detail">Enseigner en amont le nom et les caractéristiques des concepts clés, pour libérer des ressources lors de l'apprentissage principal. <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 0,78)</span> <a class="reflink" href="#ref-mayer-2024">↗</a></div>
+          </div>
           <div class="p-card" data-dots="3">
             <div class="p-name">Modalité</div>
             <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet fort</span></div>
-            <div class="p-hint">+ toucher pour détail</div>
-            <div class="p-detail">Préférer une narration orale à un texte écrit pour accompagner une animation : cela répartit la charge entre les deux canaux au lieu de surcharger le canal visuel. <a class="reflink" href="#ref-mayer-2005">↗</a></div>
+            <div class="p-hint">Sélectionner pour le détail</div>
+            <div class="p-detail">Préférer une narration orale à un texte écrit pour accompagner une animation : cela répartit la charge entre les deux canaux au lieu de surcharger le canal visuel. <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 1,00)</span> <a class="reflink" href="#ref-mayer-2024">↗</a></div>
           </div>
         </div>
       </div>
@@ -848,38 +838,38 @@
           <div class="p-card" data-dots="3">
             <div class="p-name">Multimédia</div>
             <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet fort</span></div>
-            <div class="p-hint">+ toucher pour détail</div>
-            <div class="p-detail">Les gens apprennent mieux avec des mots et des images qu'avec des mots seuls — à condition que l'image soit pertinente et bien intégrée. <a class="reflink" href="#ref-mayer-2005">↗</a></div>
+            <div class="p-hint">Sélectionner pour le détail</div>
+            <div class="p-detail">Les gens apprennent mieux avec des mots et des images qu'avec des mots seuls — à condition que l'image soit pertinente et bien intégrée. <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 1,35)</span> <a class="reflink" href="#ref-mayer-2024">↗</a></div>
+          </div>
+          <div class="p-card" data-dots="3">
+            <div class="p-name">Personnalisation</div>
+            <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet fort</span></div>
+            <div class="p-hint">Sélectionner pour le détail</div>
+            <div class="p-detail">Un style conversationnel et des personnages/agents pédagogiques favorisent l'engagement et le traitement actif, sans excès (l'effet peut s'inverser si l'agent distrait). <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 1,00)</span> <a class="reflink" href="#ref-mayer-2024">↗</a></div>
           </div>
           <div class="p-card" data-dots="2">
-            <div class="p-name">Personnalisation</div>
+            <div class="p-name">Voix</div>
             <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet modéré</span></div>
-            <div class="p-hint">+ toucher pour détail</div>
-            <div class="p-detail">Un style conversationnel et des personnages/agents pédagogiques favorisent l'engagement et le traitement actif, sans excès (l'effet peut s'inverser si l'agent distrait). <a class="reflink" href="#ref-mayer-2005">↗</a></div>
+            <div class="p-hint">Sélectionner pour le détail</div>
+            <div class="p-detail">Une voix humaine amicale est souvent préférée à une voix synthétique, mais l'effet mesuré sur l'apprentissage reste inconsistant selon les études. <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 0,74)</span> <a class="reflink" href="#ref-mayer-2024">↗</a></div>
           </div>
           <div class="p-card" data-dots="1">
-            <div class="p-name">Voix</div>
-            <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet faible/mixte</span></div>
-            <div class="p-hint">+ toucher pour détail</div>
-            <div class="p-detail">Une voix humaine amicale est souvent préférée à une voix synthétique, mais l'effet mesuré sur l'apprentissage reste inconsistant selon les études. <a class="reflink" href="#ref-mayer-2005">↗</a></div>
-          </div>
-          <div class="p-card" data-dots="2">
             <div class="p-name">Image / incarnation</div>
-            <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet modéré</span></div>
-            <div class="p-hint">+ toucher pour détail</div>
-            <div class="p-detail">Des agents pédagogiques incarnés, avec gestes et regard socialement congruents, renforcent le sentiment de présence sociale et l'engagement — un pont direct avec les avatars en VR. <a class="reflink" href="#ref-mayer-2005">↗</a></div>
+            <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet faible</span></div>
+            <div class="p-hint">Sélectionner pour le détail</div>
+            <div class="p-detail">L'image du locuteur à l'écran n'améliore pas nécessairement l'apprentissage <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 0,20)</span> ; en revanche, les gestes, le regard et les mouvements humains d'un agent incarné améliorent le transfert <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 0,58)</span>. <a class="reflink" href="#ref-mayer-2024">↗</a></div>
           </div>
         </div>
       </div>
 
     </div>
-  </section>
+</section>
 
   <!-- ============ CHARGE COGNITIVE ============ -->
   <section id="charge">
     <div class="eyebrow">Socle théorique</div>
     <h2>La triade de charge cognitive</h2>
-    <p class="section-intro">Les principes de Mayer visent tous, in fine, à équilibrer ces trois formes de charge en mémoire de travail (Sweller ; Paas & van Merriënboer).</p>
+    <p class="section-intro">Les principes de Mayer visent tous, in fine, à équilibrer ces trois formes de charge en mémoire de travail (Sweller ; Paas &amp; Van Merriënboer (1994) <a class="reflink" href="#ref-paas-1994">↗</a>). Les trois traitements de Mayer (extrinsèque, essentiel, génératif) et les trois charges de Sweller (intrinsèque, extrinsèque, germane) ne se superposent pas exactement — la charge germane a d'ailleurs été redéfinie comme une ressource au service de l'apprentissage (Sweller, Van Merriënboer &amp; Paas (2019) <a class="reflink" href="#ref-sweller-2019">↗</a>).</p>
     <div class="triad">
       <div class="triad-card" style="--c:var(--text-faint)">
         <h3>Intrinsèque</h3>
@@ -904,16 +894,16 @@
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false" style="--c:var(--amber);">
         <h3>Système 1 — rapide, intuitif</h3>
         <p>Automatique, peu coûteux en charge, mais sujet aux biais. En VR, la présence et l'incarnation le mobilisent en continu : l'expérience paraît fluide et « vraie » sans effort délibéré.</p>
-        <div class="p-detail">Il fonctionne par associations et heuristiques (ancrage, disponibilité) : c'est lui que sollicitent les biais de ta section « Biais cognitifs » (effet Protée, illusion de compétence). Utile pour l'engagement, risqué pour l'apprentissage si on le laisse seul juge. <a class="reflink" href="#ref-kahneman-2011">↗</a></div>
+        <div class="p-detail">Il fonctionne par associations et heuristiques (ancrage, disponibilité) : c'est lui que solliciteraient les biais de la section « Biais cognitifs » (effet Protée, illusion de compétence) — interprétation de l'auteur. Utile pour l'engagement, risqué pour l'apprentissage si on le laisse seul juge. <a class="reflink" href="#ref-kahneman-2011">↗</a></div>
       </div>
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false" style="--c:var(--violet);">
         <h3>Système 2 — lent, délibératif</h3>
         <p>Contrôlé, exigeant pour la mémoire de travail. C'est lui qui soutient le traitement génératif de Mayer. S'il est saturé par la charge extrinsèque (interface, nouveauté), l'apprentissage profond n'a plus de ressources.</p>
-        <div class="p-detail">Un Système 2 surchargé se « focalise » : c'est le même mécanisme que l'attention tunnel décrit par Wickens (2008 <a class="reflink" href="#ref-wickens-2008">↗</a>) — en champ de vision libre, l'attention se verrouille sur un canal au détriment du reste. D'où l'importance de la signalisation pour guider ce traitement lent.</div>
+        <div class="p-detail">Un Système 2 surchargé se « focalise » : c'est le même mécanisme que le tunnel attentionnel décrit par Wickens (2005 <a class="reflink" href="#ref-wickens-2005">↗</a>) — une attention prolongée sur une source ou une tâche au détriment des autres, sans lien direct avec le champ de vision. D'où l'importance de la signalisation pour guider ce traitement lent.</div>
       </div>
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false" style="--c:var(--teal);">
         <h3>Le pont avec l'immersion</h3>
-        <p>La RV engage d'abord le Système 1 : l'apprenant confond fluidité et compréhension (illusion de compétence). Libérer de la charge extrinsèque, c'est laisser de la place au Système 2 — condition de l'apprentissage factuel.</p>
+        <p>La VR engage d'abord le Système 1 : l'apprenant peut confondre fluidité et compréhension (illusion de compétence) — interprétation de l'auteur. Libérer de la charge extrinsèque, c'est laisser de la place au Système 2 — condition de l'apprentissage factuel.</p>
         <div class="p-detail">Ce point rejoint directement la tension présence / charge cognitive (section « Tension centrale ») : plus l'immersion est riche, plus le Système 1 est sollicité — et plus il faut d'aménagements (pré-entraînement, signalisation) pour laisser au Système 2 la place de traiter le fond. <a class="reflink" href="#ref-kahneman-2011">↗</a></div>
       </div>
       </section>
@@ -924,7 +914,7 @@
     <h2>La taxonomie de Bloom (révisée)</h2>
     <p class="section-intro">Là où la CTML décrit <i>comment</i> l'esprit traite l'information, la taxonomie de Bloom classe <i>quel type</i> d'objectif cognitif on vise. Formuler l'objectif d'apprentissage avant de choisir le dispositif (2D ou immersif) évite de mobiliser un dispositif immersif coûteux là où un simple support suffirait pour un objectif de mémorisation.</p>
 
-    <p style="font-size:.85rem; color:var(--text-faint); max-width:660px; margin-bottom:6px;">Version révisée par Anderson &amp; Krathwohl (2001), qui reformule les six catégories de Bloom (1956) en verbes d'action et place « Créer » comme le processus le plus intégrateur. Elles sont présentées ici <b>en roue, sans sommet ni base</b> : un rappel visuel qu'il ne s'agit pas d'un escalier à gravir mais de six processus cognitifs que l'on combine.</p>
+    <p style="font-size:.85rem; color:var(--text-faint); max-width:660px; margin-bottom:6px;">Version révisée par Anderson &amp; Krathwohl (2001), qui reformule les six catégories de Bloom (1956 <a class="reflink" href="#ref-bloom-1956">↗</a>) en verbes d'action et place « Créer » comme le processus le plus intégrateur. Sur la taxonomie, voir aussi Forehand (2010 <a class="reflink" href="#ref-forehand-2010">↗</a>). Elles sont présentées ici <b>en roue, sans sommet ni base</b> : un rappel visuel qu'il ne s'agit pas d'un escalier à gravir mais de six processus cognitifs que l'on combine.</p>
 
     <div class="bloom-wheel-layout">
       <div class="bloom-wheel-wrap">
@@ -936,44 +926,44 @@
       <div class="bloom-detail" id="bloomDetail">
         <div class="bd-eyebrow">Processus cognitif</div>
         <h3 id="bdName">Une palette, pas un escalier</h3>
-        <div class="bd-en" id="bdEn">Anderson &amp; Krathwohl, 2001</div>
+        <div class="bd-en" id="bdEn">Anderson &amp; Krathwohl (2001)</div>
         <p id="bdDesc">Les six catégories sont souvent citées dans l'ordre <i>Mémoriser → Créer</i>, mais cet ordre indique une complexité cognitive croissante, pas une séquence obligatoire. Selon l'objectif, on peut entrer par n'importe quelle catégorie — et une tâche authentique en mobilise généralement plusieurs à la fois.</p>
         <div class="bd-verbs" id="bdVerbs"><b>Sélectionne un segment de la roue pour voir sa définition et ses verbes d'action.</b></div>
       </div>
     </div>
 
     <div class="callout">
-      <b>Le piège de la « pyramide » —</b> la représentation pyramidale popularisée n'est pas de Bloom lui-même et suggère à tort qu'il faut « épuiser » les niveaux bas avant d'aborder les hauts. Anderson &amp; Krathwohl <a class="reflink" href="#ref-anderson-2001">↗</a> insistent : les niveaux se recouvrent et un apprentissage authentique mobilise souvent plusieurs niveaux en même temps.
+      <b>Le piège de la « pyramide » —</b> la représentation pyramidale popularisée n'est pas de Bloom lui-même et suggère à tort qu'il faut « épuiser » les niveaux bas avant d'aborder les hauts. Anderson &amp; Krathwohl <a class="reflink" href="#ref-anderson-2001">↗</a> (voir aussi Krathwohl (2002) <a class="reflink" href="#ref-krathwohl-2002">↗</a>) insistent : les six processus forment un <b>continuum de complexité croissante</b>, avec des chevauchements possibles, et un apprentissage authentique mobilise souvent plusieurs niveaux en même temps.
     </div>
 
     <div class="callout good">
-      <b>Lien avec l'immersion —</b> l'apport propre de la RV (agentivité, incarnation, transfert spatial) se situe surtout aux niveaux <i>Appliquer</i> et <i>Analyser</i> en contexte réaliste. Pour <i>Mémoriser</i> ou <i>Comprendre</i> un contenu simple, un support 2D bien conçu (principes de Mayer) atteint souvent le même objectif à moindre coût — d'où l'intérêt de fixer le niveau de Bloom visé <i>avant</i> l'arbre de décision plus bas.
+      <b>Lien avec l'immersion —</b> l'apport propre de la VR (agentivité, incarnation, transfert spatial) se situerait surtout aux niveaux <i>Appliquer</i> et <i>Analyser</i> en contexte réaliste (interprétation de l'auteur). Pour <i>Mémoriser</i> ou <i>Comprendre</i> un contenu simple, un support 2D bien conçu (principes de Mayer) atteint souvent le même objectif à moindre coût — d'où l'intérêt de fixer le niveau de Bloom visé <i>avant</i> l'arbre de décision plus bas.
     </div>
   </section>
 
   <!-- ============ CAMIL ============ -->
   <section id="camil">
     <div class="eyebrow">Recherche sur l'immersion</div>
-    <h2>Le modèle CAMIL (Makransky &amp; Petersen, 2021 <a class="reflink" href="#ref-makransky-2021">↗</a>)</h2>
-    <p class="section-intro">Le <i>Cognitive Affective Model of Immersive Learning</i> prolonge la CTML pour les environnements immersifs (RV, digital twins). Il ajoute deux affordances propres à l'immersion : la présence et l'agentivité.</p>
+    <h2>Le modèle CAMIL (Makransky &amp; Petersen (2021) <a class="reflink" href="#ref-makransky-petersen-2021">↗</a>)</h2>
+    <p class="section-intro">Le <i>Cognitive Affective Model of Immersive Learning</i> prolonge la CTML pour les environnements immersifs (VR, jumeaux numériques). Il ajoute deux affordances propres à l'immersion : la présence et l'agentivité.</p>
     <div class="camil-flow">
       <div class="camil-step">
-        <h4>Affordances</h4>
+        <h3>Affordances</h3>
         <p>Immersion (champ de vision, sensoriel), contrôle/agentivité, incarnation via avatar.</p>
       </div>
       <div class="camil-arrow">→</div>
       <div class="camil-step">
-        <h4>États psychologiques</h4>
+        <h3>États psychologiques</h3>
         <p>Sentiment de présence, agentivité perçue, motivation intrinsèque et intérêt situationnel.</p>
       </div>
       <div class="camil-arrow">→</div>
       <div class="camil-step">
-        <h4>Processus cognitifs</h4>
+        <h3>Processus cognitifs</h3>
         <p>Traitement génératif favorisé par la présence — mais charge extrinsèque accrue par la nouveauté technique et la richesse sensorielle.</p>
       </div>
       <div class="camil-arrow">→</div>
       <div class="camil-step">
-        <h4>Résultats</h4>
+        <h3>Résultats</h3>
         <p>Apprentissage factuel, procédural, transfert spatial — modéré par les objectifs pédagogiques, l'intérêt et les capacités d'autorégulation.</p>
       </div>
     </div>
@@ -987,21 +977,21 @@
 
     <div class="hero-widget">
       <div class="load-bar" id="loadStack" role="img" aria-label="Répartition de la charge cognitive totale">
-        <div class="load-seg seg-intr" id="segIntrinsic"><span class="seg-tag" id="tagIntrinsic"><span class="t-label">Intrinsèque</span><span class="t-val">30 %</span></span></div>
-        <div class="load-seg seg-extr" id="segExtrinsic"><span class="seg-tag" id="tagExtrinsic"><span class="t-label">Extrinsèque</span><span class="t-val">12 %</span></span></div>
-        <div class="load-seg seg-germ" id="segGermane"><span class="seg-tag" id="tagGermane"><span class="t-label">Germane</span><span class="t-val">58 %</span></span></div>
+        <div class="load-seg seg-intr" id="segIntrinsic"><span class="seg-tag" id="tagIntrinsic"><span class="t-label">Intrinsèque</span><span class="t-val">30 %</span></span></div>
+        <div class="load-seg seg-extr" id="segExtrinsic"><span class="seg-tag" id="tagExtrinsic"><span class="t-label">Extrinsèque</span><span class="t-val">12 %</span></span></div>
+        <div class="load-seg seg-germ" id="segGermane"><span class="seg-tag" id="tagGermane"><span class="t-label">Germane</span><span class="t-val">58 %</span></span></div>
       </div>
 
       <div class="load-readout">
         <div class="presence-block">
-          <div class="pm-head"><span>Présence / agentivité — bénéfice CAMIL</span><b id="valPresence">0%</b></div>
+          <div class="pm-head"><span>Présence / agentivité — bénéfice CAMIL</span><b id="valPresence">0 %</b></div>
           <div class="pm-track tall"><div class="pm-fill" id="barPresence"></div></div>
         </div>
         <span class="fit-badge ok" id="fitBadge" tabindex="0" data-tip="Confortable : la charge est équilibrée et la présence mobilisée. Déplace les curseurs pour voir les autres verdicts.">Confortable</span>
         <div class="load-legend">
-          <span><i class="dot intr"></i>Intrinsèque <b id="valIntrinsic">30%</b></span>
-          <span><i class="dot extr"></i>Extrinsèque <b id="valExtrinsic">12%</b></span>
-          <span><i class="dot germ"></i>Germane (place utile) <b id="valGermane">58%</b></span>
+          <span><i class="dot intr"></i>Intrinsèque <b id="valIntrinsic">30 %</b></span>
+          <span><i class="dot extr"></i>Extrinsèque <b id="valExtrinsic">12 %</b></span>
+          <span><i class="dot germ"></i>Germane (place utile) <b id="valGermane">58 %</b></span>
         </div>
       </div>
 
@@ -1009,7 +999,7 @@
         <div class="slider-cell">
           <div class="axis-labels sm">
             <span class="lo">← 2D (écran)</span>
-            <span class="hi">RV immersive →</span>
+            <span class="hi">VR immersive →</span>
           </div>
           <input type="range" id="immersionSlider" min="0" max="100" value="20"
             aria-label="Niveau d'immersion du dispositif, de 0 (multimédia 2D) à 100 (réalité virtuelle immersive)"
@@ -1026,10 +1016,10 @@
         </div>
       </div>
 
-      <p class="tube-note">La charge cognitive consomme la <b>capacité de la mémoire de travail (100 %)</b>. L'<b>intrinsèque</b> dépend de l'interactivité des éléments à traiter simultanément (Sweller) : <b>30 % en 2D</b>, jusqu'à <b>42 % en RV haute fidélité</b> (la RV empile plus d'éléments à gérer à la fois). L'<b>extrinsèque</b> monte avec l'immersion (nouveauté, richesse sensorielle) et se réduit par la conception — <b>plancher 8 %</b> (coût de nouveauté irréductible). La <b>germane</b> est ce qu'il reste. Le <b>seuil d'alerte à 40 % de germane utile</b> est signalé par la pastille « ⚠ » dans la légende : sous ce niveau, l'apprentissage est en risque. En RV <b>mal conçue</b> (q=0), l'extrinsèque grimpe (~45 %), la germane s'effondre (~13 %) et la présence avec (~14 %) ; une conception <b>maîtrisée</b> (q=100) la redresse — germane ~50 %, présence ~90 %.</p>
+      <p class="tube-note">La charge cognitive consomme la <b>capacité de la mémoire de travail (100 %)</b>. L'<b>intrinsèque</b> dépend de l'interactivité des éléments à traiter simultanément (Sweller) : <b>30 % en 2D</b>, jusqu'à <b>42 % en VR haute fidélité</b> (la VR empile plus d'éléments à gérer à la fois). L'<b>extrinsèque</b> monte avec l'immersion (nouveauté, richesse sensorielle) et se réduit par la conception — <b>plancher 8 %</b> (coût de nouveauté irréductible). La <b>germane</b> est ce qu'il reste. La pastille « ⚠ » de la légende marque des paliers sur la charge germane utile : <b>Risque</b> (&lt; 25 %), <b>Tension</b> (25–40 %), <b>Confortable</b> (40–50 %) et <b>Optimal</b> (≥ 50 %, avec conception maîtrisée et présence mobilisée). En VR <b>mal conçue</b> (q=0), l'extrinsèque grimpe (~45 %), la germane s'effondre (~13 %) et la présence avec (~14 %) ; une conception <b>maîtrisée</b> (q=100) la redresse — germane ~50 %, présence ~90 %.</p>
 
       <div id="interp"></div>
-      <p style="font-family:var(--mono); font-size:.68rem; color:var(--text-faint); margin:14px 0 0; text-align:right;">Valeurs illustratives — schématisent une tendance documentée, ne sont pas des mesures empiriques.</p>
+      <p style="font-family:var(--mono); font-size:.68rem; color:var(--text-faint); margin:14px 0 0; text-align:right;">Valeurs illustratives — la charge cognitive comme la courbe de présence sont des modèles schématiques, pas des mesures empiriques.</p>
     </div>
   </section>
 
@@ -1044,27 +1034,27 @@
         <div class="p-name">Attention — le risque de tunnel attentionnel</div>
         <div class="p-def">En champ de vision libre, l'attention se fixe sur un canal — la signalisation compte plus qu'à l'écran.</div>
         <div class="p-detail">
-          En 2D, le concepteur contrôle presque entièrement ce qui entre dans le champ visuel. En VR, le champ de vision libre déplace ce contrôle vers l'apprenant : l'attention peut se fixer sur un canal ou un objectif au détriment du reste — le phénomène d'<i>attentional tunneling</i> décrit par Wickens <a class="reflink" href="#ref-wickens-2008">↗</a>. La théorie de la charge perceptive (Lavie <a class="reflink" href="#ref-lavie-2005">↗</a>) prédit qu'un environnement visuellement riche épuise plus vite les ressources disponibles pour filtrer les distracteurs, rendant la signalisation (repères, contraste, son spatialisé) plus déterminante qu'à l'écran, pas moins.
+          En 2D, le concepteur contrôle presque entièrement ce qui entre dans le champ visuel. En VR, le champ de vision libre déplace ce contrôle vers l'apprenant, et l'attention peut se fixer sur une source ou une tâche au détriment des autres — le « tunnel attentionnel » (<i>attentional tunneling</i>) décrit par Wickens (2005 <a class="reflink" href="#ref-wickens-2005">↗</a>) : une attention prolongée sur une source, indépendamment du champ de vision. La théorie de la charge perceptive (Lavie (2005) <a class="reflink" href="#ref-lavie-2005">↗</a>) distingue deux niveaux de charge : une charge perceptive élevée réduit l'interférence des distracteurs, tandis qu'une charge en mémoire de travail ou en contrôle exécutif l'augmente. La signalisation (repères, contraste, son spatialisé) aide surtout lorsque la tâche mobilise le contrôle exécutif : elle guide un traitement qui ne peut pas s'automatiser.
         </div>
       </div>
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false">
         <div class="p-name">Mémoire de travail — un canal spatial déjà occupé</div>
         <div class="p-def">Superposer spatial (3D) et verbal complexe épuise la même ressource limitée.</div>
         <div class="p-detail">
-          Le modèle de Baddeley attribue la navigation et la manipulation d'objets 3D au calepin visuo-spatial — le même sous-système que celui sollicité par les diagrammes et animations en 2D. Cela prédit un coût en double tâche : superposer des informations spatiales (déplacement libre, manipulation d'objets) et verbales complexes (instructions denses) revient à faire concourir deux traitements pour la même ressource limitée, au détriment de l'un ou de l'autre.
+          Le modèle de Baddeley attribue la navigation et la manipulation d'objets 3D au calepin visuo-spatial — le même sous-système que celui sollicité par les diagrammes et animations en 2D. Cela prédit un coût en double tâche : superposer des informations spatiales (déplacement libre, manipulation d'objets) et verbales complexes (instructions denses) revient à faire concourir deux traitements pour la même ressource limitée, au détriment de l'un ou de l'autre. La théorie des ressources multiples (Wickens (2008) <a class="reflink" href="#ref-wickens-2008">↗</a>) décrit ce recouvrement.
          <a class="reflink" href="#ref-baddeley-1974">↗</a></div>
       </div>
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false">
         <div class="p-name">Cognition incarnée — le corps comme outil de raisonnement</div>
         <div class="p-def">Le geste et le mouvement structurent la compréhension, pas seulement son contenu.</div>
         <div class="p-detail">
-          La cognition incarnée (Barsalou <a class="reflink" href="#ref-barsalou-2008-biais">↗</a> ; Kilteni et al. <a class="reflink" href="#ref-kilteni-2023">↗</a> sur le « sense of embodiment ») propose que les interactions physiques structurent directement le raisonnement, pas seulement son contenu. Des recherches sur des systèmes de cognition spatiale incarnée montrent que les apprenants transforment le mouvement corporel en raisonnement proportionnel (« utiliser son corps pour mesurer une distance »). Une étude comparant exploration en VR immersive et exploration sur carte 2D trouve un résultat asymétrique intéressant : la VR favorise le jugement de direction relative entre objets, tandis que la carte favorise l'orientation cardinale et une représentation allocentrique — deux formats de connaissance spatiale complémentaires, pas équivalents.
+          La cognition incarnée (Barsalou <a class="reflink" href="#ref-barsalou-2008-biais">↗</a> ; Kilteni et al. <a class="reflink" href="#ref-kilteni-2012">↗</a> sur le « sense of embodiment ») propose que les interactions physiques structurent directement le raisonnement, pas seulement son contenu. Des recherches sur des systèmes de cognition spatiale incarnée montrent que les apprenants transforment le mouvement corporel en raisonnement proportionnel (« utiliser son corps pour mesurer une distance »). Une étude comparant exploration en VR immersive et exploration sur carte 2D (König et al., 2021 <a class="reflink" href="#ref-konig-2021">↗</a>) trouve un résultat asymétrique intéressant : la VR favorise le jugement de direction relative entre objets, tandis que la carte favorise l'orientation cardinale et une représentation allocentrique — deux formats de connaissance spatiale complémentaires, pas équivalents.
         </div>
       </div>
     </div>
 
     <div class="callout">
-      <b>Confusion fréquente à éviter —</b> une partie des effets attribués à la « charge cognitive de l'immersion » dans les études de terrain est en réalité confondue avec le mal des simulateurs, aussi appelé cybersickness ou vertiges immersifs, et l'inconfort du matériel. Avant d'attribuer une baisse de performance à un traitement cognitif, il est recommandé de mesurer séparément le confort (ex. Simulator Sickness Questionnaire) et la charge perçue.
+      <b>Confusion fréquente à éviter —</b> une partie des effets attribués à la « charge cognitive de l'immersion » dans les études de terrain est en réalité confondue avec le <b>mal des simulateurs</b> et l'inconfort du matériel. Le mal des simulateurs (<i>simulator sickness</i>) et la cinétose numérique (<i>cybersickness</i>) sont deux notions proches mais distinctes (Stanney et al., 1997 <a class="reflink" href="#ref-stanney-1997">&#8599;</a>). Avant d'attribuer une baisse de performance à un traitement cognitif, mesurer séparément le confort — le SSQ (Simulator Sickness Questionnaire ; Kennedy et al., 1993 <a class="reflink" href="#ref-kennedy-1993">&#8599;</a>) vient des simulateurs militaires ; le VRSQ (Kim et al., 2018 <a class="reflink" href="#ref-kim-2018">&#8599;</a>) est spécifique à la VR — et la charge perçue.
     </div>
   </section>
 
@@ -1079,35 +1069,35 @@
         <div class="p-name">Illusion de compétence (écart subjectif/objectif)</div>
         <div class="p-def">Ce qui se vit « fluide » en VR se confond avec ce qui est réellement appris.</div>
         <div class="p-detail">
-          Plusieurs études rapportent que les apprenants en RV immersive évaluent leur propre apprentissage plus favorablement que des apprenants sur écran, alors que les mesures objectives de performance sont équivalentes ou inférieures. La présence et l'engagement sont confondus avec l'apprentissage réel — un cas particulier du biais de fluence métacognitive (Bjork <a class="reflink" href="#ref-bjork-1994">↗</a>) : ce qui se vit de façon fluide et immersive « semble » mieux appris.
+          Plusieurs études rapportent que les apprenants en VR immersive évaluent leur propre apprentissage plus favorablement que des apprenants sur écran, alors que les mesures objectives de performance sont équivalentes ou inférieures. La présence et l'engagement sont confondus avec l'apprentissage réel — un cas particulier du biais de fluence métacognitive (Bjork <a class="reflink" href="#ref-bjork-1994">↗</a>) : ce qui se vit de façon fluide et immersive « semble » mieux appris.
         </div>
       </div>
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false">
         <div class="p-name">Effet Protée (Proteus effect)</div>
         <div class="p-def">Les traits de l'avatar modifient la cognition de la personne qui l'incarne.</div>
         <div class="p-detail">
-          Yee & Bailenson (2007) <a class="reflink" href="#ref-yee-2007">↗</a> montrent que les traits perçus d'un avatar modifient le comportement et la cognition de la personne qui l'incarne — par exemple une meilleure performance à des tâches cognitives en incarnant un avatar associé à la compétence ou à l'expertise. Effet exploitable en conception (avatar « expert » pour une simulation professionnelle) mais à double tranchant : un avatar porteur de stéréotypes négatifs peut aussi induire des comportements ou biais indésirables.
+          Yee & Bailenson (2007) <a class="reflink" href="#ref-yee-2007">↗</a> montrent que les traits perçus d'un avatar modifient le comportement : la <b>hauteur</b> de l'avatar influence la confiance en négociation, et son <b>attractivité</b> l'autodévoilement. L'amélioration des performances cognitives avec un avatar associé à l'expertise (avatar « Einstein ») est documentée séparément (Banakou, Kishore & Slater (2018) <a class="reflink" href="#ref-banakou-2018">↗</a>). Effet exploitable en conception (avatar « expert » pour une simulation professionnelle) mais à double tranchant : un avatar porteur de stéréotypes négatifs peut aussi induire des comportements ou biais indésirables.
         </div>
       </div>
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false">
         <div class="p-name">Détails séduisants & biais de fluence</div>
         <div class="p-def">Un environnement riche paraît pédagogique, même s'il ne l'est pas.</div>
         <div class="p-detail">
-          Extension du principe de cohérence de Mayer : un environnement visuellement riche est spontanément jugé plus « pédagogique » qu'un environnement sobre, indépendamment de l'apprentissage réel qu'il produit. Le réflexe d'enrichir sensoriellement un environnement immersif pour le rendre convaincant va souvent à l'encontre de l'objectif pédagogique.
+          Extension du principe de cohérence de Mayer : un environnement visuellement riche est spontanément jugé plus « pédagogique » qu'un environnement sobre, indépendamment de l'apprentissage réel qu'il produit — c'est l'effet des « détails séduisants » (Harp &amp; Mayer (1998) <a class="reflink" href="#ref-harp-mayer-1998">&#8599;</a>). Le réflexe d'enrichir sensoriellement un environnement immersif pour le rendre convaincant va souvent à l'encontre de l'objectif pédagogique.
          <a class="reflink" href="#ref-mayer-2005">↗</a></div>
       </div>
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false">
         <div class="p-name">Confiance excessive envers le modèle simulé (automation bias)</div>
         <div class="p-def">Le réalisme de l'interface nourrit une confiance démesurée dans le modèle.</div>
         <div class="p-detail">
-          Dans les jumeaux numériques utilisés pour la prise de décision (maintenance prédictive, diagnostic, planification), la richesse visuelle et l'impression de contrôle en temps réel peuvent renforcer une confiance disproportionnée dans les sorties du modèle sous-jacent — un biais d'automatisation classique en ergonomie cognitive (Parasuraman & Manzey, 2010 <a class="reflink" href="#ref-parasuraman-2010">↗</a>), amplifié par le réalisme perceptif de l'interface plutôt que par la validité réelle du modèle.
+          <b>Hypothèse de conception :</b> dans les jumeaux numériques utilisés pour la prise de décision (maintenance prédictive, diagnostic, planification), la richesse visuelle et l'impression de contrôle en temps réel pourraient renforcer une confiance disproportionnée dans les sorties du modèle sous-jacent — un biais d'automatisation classique en ergonomie cognitive (Parasuraman & Manzey (2010) <a class="reflink" href="#ref-parasuraman-2010">↗</a>). Le réalisme perceptif de l'interface serait un amplificateur, sans que l'étude porte sur la VR.
         </div>
       </div>
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false">
         <div class="p-name">Distorsion du jugement de risque</div>
         <div class="p-def">Une expérience vive surestime la fréquence perçue d'un risque rare.</div>
         <div class="p-detail">
-          Une expérience immersive vive (accident simulé, incident critique) peut, par heuristique de disponibilité, faire surestimer la fréquence perçue d'un événement rare après coup — un effet recherché en formation à la sécurité, mais qui doit être calibré pour ne pas produire une anxiété ou une estimation de risque disproportionnée.
+          <b>Hypothèse de conception :</b> une expérience immersive vive (accident simulé, incident critique) pourrait, par heuristique de disponibilité, faire surestimer la fréquence perçue d'un événement rare après coup — un effet recherché en formation à la sécurité, mais qui doit être calibré. Tversky &amp; Kahneman (1974) portent sur les heuristiques de jugement, pas sur la VR.
          <a class="reflink" href="#ref-tversky-1974">↗</a></div>
       </div>
     </div>
@@ -1123,10 +1113,10 @@
     <h2>La tension centrale : présence vs charge cognitive</h2>
     <p class="section-intro">Le point de friction principal entre CTML et recherche sur l'immersion tient à un constat robuste et réplicable dans <a href="#lectures">plusieurs travaux récents</a> (voir la section Études).</p>
     <div class="callout">
-      <b>Constat récurrent —</b> les environnements très immersifs augmentent fréquemment la charge extrinsèque (fidélité graphique, richesse sensorielle, nouveauté de l'interface), ce qui peut réduire l'apprentissage factuel même quand la présence et la motivation augmentent (Parong & Mayer, 2018 ; Makransky et al., 2019).
+      <b>Constat récurrent —</b> les environnements très immersifs augmentent fréquemment la charge extrinsèque (fidélité graphique, richesse sensorielle, nouveauté de l'interface), ce qui peut réduire l'apprentissage factuel même quand la présence et la motivation augmentent (Parong &amp; Mayer (2018) <a class="reflink" href="#ref-parong-2018">↗</a>, 2021 <a class="reflink" href="#ref-parong-2021">↗</a> ; Makransky et al. (2019) <a class="reflink" href="#ref-makransky-terkildsen-2019">↗</a>). L'immersion 3D n'améliore pas nécessairement l'apprentissage par rapport à un équivalent 2D (Mayer (2024), principe d'immersion <a class="reflink" href="#ref-mayer-2024">↗</a>).
     </div>
     <div class="callout good">
-      <b>Nuance importante —</b> une bonne partie de ce surcoût cognitif est attribuable à <i>l'effet de nouveauté</i> plutôt qu'à l'immersion elle-même : un pré-entraînement à la manipulation de l'environnement RV (contrôles, déplacement, interface) réduit la charge extrinsèque et améliore l'apprentissage lors de sessions ultérieures (recherche 2024 sur le pré-entraînement en RV).
+      <b>Nuance importante —</b> une bonne partie de ce surcoût cognitif est attribuable à <i>l'effet de nouveauté</i> plutôt qu'à l'immersion elle-même : un tutoriel de <b>familiarisation à l'interface</b> VR (contrôles, déplacement) a réduit le temps d'apprentissage des mécaniques et amélioré la compréhension (n = 86 ; Miguel-Alonso et al., 2024 <a class="reflink" href="#ref-miguel-2024">&#8599;</a>). Il s'agit de familiarisation à l'interface, pas d'application du principe de pré-entraînement de Mayer.
     </div>
     <div class="callout good">
       <b>Où l'immersion l'emporte —</b> pour les apprentissages procéduraux, psychomoteurs, spatiaux ou nécessitant un transfert vers un contexte réel (gestes chirurgicaux, procédures industrielles, exploration 3D), l'agentivité et l'incarnation apportent un bénéfice que le 2D ne peut pas reproduire — c'est précisément le terrain des simulateurs et jumeaux numériques pédagogiques.
@@ -1141,74 +1131,74 @@
 
     <div class="triad">
       <div class="triad-card" style="--c:var(--amber)">
-        <h3>L1 — Apprentissage de l'interface</h3>
-        <p>Comprendre les contrôles, la navigation, les gestes disponibles. Tant que L1 n'est pas automatisé, il consomme des ressources qui devraient servir L2 — d'où l'importance du pré-entraînement dissocié. <a class="reflink" href="#ref-l1l2">↗</a></p>
+        <h3>Couche interface (L1) — apprentissage de l'interface</h3>
+        <p>Comprendre les contrôles, la navigation, les gestes disponibles. Tant que la couche interface (L1) n'est pas automatisée, elle consomme des ressources qui devraient servir la couche contenu (L2) — d'où l'importance du pré-entraînement dissocié. <a class="reflink" href="#ref-chandramouli-2025">↗</a></p>
       </div>
       <div class="triad-card" style="--c:var(--teal)">
-        <h3>L2 — Apprentissage conceptuel/procédural</h3>
-        <p>Le contenu pédagogique visé. Une évaluation qui ne distingue pas L1 de L2 risque d'attribuer à tort un échec de compréhension à un simple problème d'interface non maîtrisée. <a class="reflink" href="#ref-l1l2">↗</a></p>
+        <h3>Couche contenu (L2) — apprentissage conceptuel/procédural</h3>
+        <p>Le contenu pédagogique visé. Une évaluation qui ne distingue pas la couche interface de la couche contenu risque d'attribuer à tort un échec de compréhension à un simple problème d'interface non maîtrisée. <a class="reflink" href="#ref-chandramouli-2025">↗</a></p>
       </div>
       <div class="triad-card" style="--c:var(--violet)">
         <h3>Confort & ergonomie</h3>
-        <p>Mal des simulateurs, fatigue oculaire, poids et ajustement du casque : des facteurs non cognitifs qui interagissent directement avec l'attention disponible pour L1 et L2. <a class="reflink" href="#ref-rebenitsch-2016">↗</a></p>
+        <p>Mal des simulateurs, fatigue oculaire, poids et ajustement du casque : des facteurs non cognitifs qui interagissent directement avec l'attention disponible pour les couches interface et contenu. <a class="reflink" href="#ref-rebenitsch-2016">↗</a></p>
       </div>
     </div>
 
     <h3 style="margin-top:30px;">Principes de conception (issus des méta-analyses & synthèses)</h3>
-    <p class="section-intro" style="margin-bottom:16px;">Six recommandations actionnables, chacune tracée à une étude vérifiée (voir <a href="#lectures">Études recommandées</a>). Clique sur une carte pour le détail et la source.</p>
+    <p class="section-intro" style="margin-bottom:16px;">Six recommandations actionnables, chacune appuyée sur les travaux cités (voir <a href="#lectures">Études recommandées</a>). Sélectionner une carte pour afficher le détail et la source.</p>
 
     <div class="card-grid" style="grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:14px;">
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false" style="--c:var(--teal);">
         <div class="p-name">Interactivité &gt; immersion seule</div>
         <div class="p-def">C'est l'interaction (pas l'immersion visuelle) qui drive l'apprentissage, via le sentiment d'agentivité.</div>
         <div class="p-detail">
-          Petersen &amp; Makransky (2022) testent le CAMIL : l'immersion augmente la charge extrinsèque, mais c'est <b>l'interactivité</b> (via l'agentivité perçue) qui prédit l'apprentissage. Concevoir pour que l'apprenant <i>fasse</i>, pas seulement subisse — donner le contrôle des actions et du rythme. <a class="reflink" href="#ref-petersen-2022">↗</a>
+          Petersen et al. (2022) testent le CAMIL : l'immersion augmente la charge extrinsèque, mais c'est <b>l'interactivité</b> (via l'agentivité perçue) qui prédit l'apprentissage. Concevoir pour que l'apprenant <i>fasse</i>, pas seulement subisse — donner le contrôle des actions et du rythme. <a class="reflink" href="#ref-petersen-2022">↗</a>
         </div>
       </div>
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false" style="--c:var(--red-soft);">
         <div class="p-name">Borner la charge extrinsèque dès la conception</div>
-        <div class="p-def">L'IVR ajoute une charge extrinsèque réelle (navigation, corps virtuel, nouveauté).</div>
+        <div class="p-def">La VR immersive (IVR, immersive virtual reality) ajoute une charge extrinsèque réelle (navigation, corps virtuel, nouveauté).</div>
         <div class="p-detail">
-          Makransky &amp; Petersen (2021, CAMIL) et Juliano et al. (2022) montrent que la charge cognitive <b>augmente</b> en HMD-VR. Utiliser les principes CTML (cohérence, signalisation, segmentation, pré-entraînement) pour ne pas saturer la mémoire de travail. <a class="reflink" href="#ref-makransky-2021">↗</a> <a class="reflink" href="#ref-juliano-2022">↗</a>
+          Makransky &amp; Petersen (2021, CAMIL) et Juliano et al. (2022) montrent que la charge cognitive <b>augmente</b> en VR sur casque (HMD, head-mounted display). Utiliser les principes CTML (cohérence, signalisation, segmentation, pré-entraînement) pour ne pas saturer la mémoire de travail. <a class="reflink" href="#ref-makransky-petersen-2021">↗</a> <a class="reflink" href="#ref-juliano-2022">↗</a>
         </div>
       </div>
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false" style="--c:var(--amber);">
         <div class="p-name">Dosage de l'immersion (rendements décroissants)</div>
         <div class="p-def">Au-delà d'un seuil, plus d'immersion n'ajoute pas de présence.</div>
         <div class="p-detail">
-          Cummings &amp; Bailenson (2016, méta-analyse) : le niveau d'immersion influence la présence avec des <b>rendements décroissants</b>. Au-delà d'un seuil, investir le surplus dans la pédagogie plutôt que dans le réalisme. <a class="reflink" href="#ref-cummings-2016">↗</a>
+          Cummings &amp; Bailenson (2016, méta-analyse) : l'immersion a un <b>effet moyen sur le sentiment de présence</b>, et les caractéristiques techniques — suivi du mouvement, stéréoscopie, champ de vision — pèsent plus que la qualité visuelle ou sonore. L'étude porte sur la <b>présence</b>, pas sur l'apprentissage. Mieux investir le surplus dans la pédagogie que dans le réalisme. <a class="reflink" href="#ref-cummings-2016">↗</a>
         </div>
       </div>
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false" style="--c:var(--violet);">
         <div class="p-name">Apprentissage génératif, pas exposition passive</div>
-        <div class="p-def">La RV seule augmente l'adhésion mais pas la mémorisation brute.</div>
+        <div class="p-def">La VR seule augmente l'adhésion mais pas la mémorisation brute.</div>
         <div class="p-detail">
-          Makransky et al. (2019) montrent que l'IVR surpasse le manuel aux tests de <b>transfert</b> (d ≈ 0,54–0,57) mais pas à la mémorisation déclarative. Exiger que l'apprenant prédise, explique, résolve dans l'environnement. <a class="reflink" href="#ref-makransky-2019b">↗</a> <a class="reflink" href="#ref-makransky-2019">↗</a>
+          Makransky, Borre-Gude &amp; Mayer (2019) <a class="reflink" href="#ref-makransky-borregude-2019">↗</a> : la VR immersive surpasse un <b>manuel de sécurité écrit</b> à <b>deux tests de transfert comportementaux en laboratoire</b> (d ≈ 0,54–0,57 ; n = 105), <b>sans différence à la rétention</b>. Exiger que l'apprenant prédise, explique, résolve dans l'environnement.
         </div>
       </div>
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false" style="--c:var(--green-soft);">
         <div class="p-name">Mesurer &amp; concevoir pour le confort</div>
-        <div class="p-def">La cybersickness empêche la présence et l'apprentissage.</div>
+        <div class="p-def">Le mal des simulateurs empêche la présence et l'apprentissage.</div>
         <div class="p-detail">
-          Rebenitsch &amp; Owen (2016, revue) recensent les déclencheurs (latence, FOV, vélocité, discordance visuo-vestibulaire). Limiter ces facteurs et administrer le SSQ (Kennedy et al., 1993) — les vertiges consomment l'attention disponible. <a class="reflink" href="#ref-rebenitsch-2016">↗</a> <a class="reflink" href="#ref-kennedy-1993">↗</a>
+          Rebenitsch &amp; Owen (2016, revue) recensent les déclencheurs (latence, champ de vision — FOV, <i>field of view</i> —, vélocité, discordance visuo-vestibulaire). Limiter ces facteurs et mesurer le confort : le SSQ (Kennedy et al., 1993) vient des simulateurs militaires ; le VRSQ (Kim et al., 2018 <a class="reflink" href="#ref-kim-2018">↗</a>) est spécifique à la VR — les vertiges consomment l'attention disponible. <a class="reflink" href="#ref-rebenitsch-2016">↗</a> <a class="reflink" href="#ref-kennedy-1993">↗</a>
         </div>
       </div>
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false" style="--c:#4db6e6;">
         <div class="p-name">Ne pas sur-promettre l'effet global</div>
-        <div class="p-def">Viser les tâches où la RV a un avantage démontré.</div>
+        <div class="p-def">Viser les tâches où la VR a un avantage démontré.</div>
         <div class="p-detail">
-          Wu et al. (2020, ES = 0,24) et Çoban et al. (2022, g = 0,38) : effet <b>petit mais positif</b>, plus marqué pour la capacité spatiale / procédurale que pour la mémorisation déclarative. Cibler ces tâches plutôt que le déclaratif brut. <a class="reflink" href="#ref-wu-2020">↗</a> <a class="reflink" href="#ref-coban-2022">↗</a> <a class="reflink" href="#ref-radianti-2020">↗</a>
+          Wu et al. (2020, ES = 0,24) et Çoban et al. (2022, g = 0,38) — ES et g sont des tailles d’effet — : effet <b>petit mais positif</b>, sur les connaissances comme sur les compétences, maintenu dans le temps. Cibler les tâches où la VR a un avantage démontré. <a class="reflink" href="#ref-wu-2020">↗</a> <a class="reflink" href="#ref-coban-2022">↗</a> <a class="reflink" href="#ref-radianti-2020">↗</a> <a class="reflink" href="#ref-merchant-2014">↗</a> <a class="reflink" href="#ref-hamilton-2021">↗</a>
         </div>
       </div>
     </div>
 
-    <h3 style="margin-top:30px;">Points de vigilance issus des heuristiques VR/XR adaptées</h3>
+    <h3 style="margin-top:30px;">Points de vigilance issus des heuristiques VR / réalité étendue (XR, <i>extended reality</i>) adaptées</h3>
     <div class="card-grid" style="grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:14px;">
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false" style="--c:var(--teal);">
         <div class="p-name">Interface diégétique en priorité</div>
         <div class="p-def">Intégrer les indications dans le monde (panneaux, objets, sons spatialisés) plutôt qu'en overlay 2D flottant.</div>
         <div class="p-detail">
-          Un overlay 2D flottant casse la cohérence spatiale et ajoute de la charge extrinsèque. Nielsen (2020) recommande en VR de maintenir la correspondance système–monde et d'éviter les éléments hors-monde. <a class="reflink" href="#ref-nielsen-2020">↗</a> <a class="reflink" href="#ref-sutcliffe-2004">↗</a>
+          Un overlay 2D flottant casse la cohérence spatiale et ajoute de la charge extrinsèque. Nielsen (2020) recommande en VR de maintenir la correspondance système–monde et d'éviter les éléments hors-monde. <a class="reflink" href="#ref-nielsen-2020">↗</a> <a class="reflink" href="#ref-sutcliffe-2004">↗</a> <a class="reflink" href="#ref-sutcliffe-2019">↗</a>
         </div>
       </div>
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false" style="--c:var(--violet);">
@@ -1219,10 +1209,10 @@
         </div>
       </div>
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false" style="--c:var(--amber);">
-        <div class="p-name">Faible latence de mouvement (motion-to-photon)</div>
+        <div class="p-name">Faible latence mouvement-rendu (motion-to-photon)</div>
         <div class="p-def">Un délai perceptible entre le mouvement réel et son rendu est une source directe d'inconfort.</div>
         <div class="p-detail">
-          La latence nourrit le malaise immersif et la charge, indépendamment de la qualité pédagogique (Rebenitsch &amp; Owen, 2016). Viser &lt; 20 ms de motion-to-photon. <a class="reflink" href="#ref-rebenitsch-2016">↗</a> <a class="reflink" href="#ref-jerald-2018">↗</a>
+          La latence nourrit le malaise immersif et la charge, indépendamment de la qualité pédagogique (Rebenitsch &amp; Owen (2016) <a class="reflink" href="#ref-rebenitsch-2016">↗</a>).
         </div>
       </div>
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false" style="--c:var(--red-soft);">
@@ -1243,21 +1233,21 @@
         <div class="p-name">Cohérence des gestes & standards</div>
         <div class="p-def">Conventions de gestes homogènes (préhension, validation, déplacement) d'une tâche à l'autre.</div>
         <div class="p-detail">
-          Des contrôles incohérents obligent à recharger la mémoire de travail en permanence (Jakob's law, heuristique #4 de Nielsen). Uniformiser les interactions réduit la charge utile. <a class="reflink" href="#ref-nielsen-2020">↗</a>
+          Des contrôles incohérents obligent à recharger la mémoire de travail en permanence (cohérence et standards, heuristique de Nielsen). Uniformiser les interactions réduit la charge utile. <a class="reflink" href="#ref-nielsen-2020">↗</a>
         </div>
       </div>
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false" style="--c:#e57373;">
-        <div class="p-name">Confort & cybersickness</div>
-        <div class="p-def">Limiter la durée de session, régler l'IPD, éviter mouvements brusques ou caméra automatique.</div>
+        <div class="p-name">Confort et mal des simulateurs</div>
+        <div class="p-def">Limiter la durée de session, régler la distance interpupillaire (IPD, <i>inter-pupillary distance</i>), éviter mouvements brusques ou caméra automatique.</div>
         <div class="p-detail">
           Le mal des simulateurs consomme l'attention disponible et dégrade l'apprentissage. Administrer le SSQ (Kennedy et al., 1993) et prévoir un seuil de retrait. <a class="reflink" href="#ref-kennedy-1993">↗</a> <a class="reflink" href="#ref-rebenitsch-2016">↗</a>
         </div>
       </div>
       <div class="triad-card acc" tabindex="0" role="button" aria-expanded="false" style="--c:#ffb74d;">
         <div class="p-name">Sécurité physique & espace de jeu</div>
-        <div class="p-def">Délimiter le play-space (guardian) et signaler ses limites.</div>
+        <div class="p-def">Délimiter l’espace de jeu et signaler ses limites.</div>
         <div class="p-detail">
-          En casque, l'apprenant ne voit plus le monde réel : risque de heurts ou de sortie de zone. Un repère de bordure prévient les accidents (principes Google VR / Microsoft Mixed Reality). <a class="reflink" href="#ref-mehmedova-2026">↗</a>
+          En casque, l'apprenant ne voit plus le monde réel : risque de heurts ou de sortie de zone. Un repère de bordure prévient les accidents (guides de conception Google VR et Microsoft Mixed Reality). <a class="reflink" href="#ref-mehmedova-2026">↗</a>
         </div>
       </div>
     </div>
@@ -1278,7 +1268,7 @@
       <div class="tree-reasoning" id="treeReasoning"></div>
       <div id="treeQuestions"></div>
       <div class="tree-result" id="treeResult">
-        <h3 id="resultTitle"></h3>
+        <h3 id="resultTitle">Résultat</h3>
         <p id="resultText"></p>
         <button class="restart" onclick="resetTree()">↺ recommencer</button>
       </div>
@@ -1291,7 +1281,7 @@
   <section id="checklist">
     <div class="eyebrow">Application pratique</div>
     <h2>Checklist de conception pour un simulateur ou jumeau numérique pédagogique</h2>
-    <p class="section-intro">Les mêmes principes n'interviennent pas tous au même moment de l'expérience. Clique une étape de la frise pour voir ce qui compte à ce moment précis du parcours — coche au fil de la conception, rien n'est envoyé ni sauvegardé. Chaque item est relié aux <a href="#principes">12 principes de Mayer</a> par une étiquette colorée : <span class="chk-tag reduce">Réduire</span> (cohérence, signalisation, segmentation, contiguïté, pré-entraînement, Redondance), <span class="chk-tag manage">Gérer</span> (modalité), <span class="chk-tag foster">Favoriser</span> (multimédia, image/incarnation, personnalisation), <span class="chk-tag msrtag">Mesure</span> (instruments d'évaluation).</p>
+    <p class="section-intro">Les mêmes principes n'interviennent pas tous au même moment de l'expérience. Sélectionner une étape de la frise pour afficher ce qui compte à ce moment précis du parcours — coche au fil de la conception, rien n'est envoyé ni sauvegardé. Chaque item est relié aux <a href="#principes">12 principes de Mayer</a> par une étiquette colorée : <span class="chk-tag reduce">Réduire</span> (cohérence, signalisation, segmentation, contiguïté, pré-entraînement), <span class="chk-tag manage">Gérer</span> (modalité, voix), <span class="chk-tag foster">Favoriser</span> (multimédia, image/incarnation, personnalisation), <span class="chk-tag msrtag">Mesure</span> (instruments d'évaluation).</p>
 
     <div class="frise">
       <div class="frise-track">
@@ -1316,24 +1306,24 @@
 
       <div class="frise-panel">
         <div class="frise-stage" data-stage="0">
-          <div class="chk-item"><input type="checkbox" id="c1"><label for="c1"><b>Pré-entraînement dissocié</b> — une séquence d'onboarding aux contrôles et à l'interface, séparée du contenu pédagogique, pour absorber l'effet de nouveauté.<div class="chk-tags"><span class="chk-tag reduce">Pré-entraînement</span><span class="chk-tag manage">Modalité</span></div></label></div>
-          <div class="chk-item"><input type="checkbox" id="c10"><label for="c10"><b>Définir le niveau de Bloom visé</b> — formuler l'objectif (Mémoriser, Comprendre, Appliquer, Analyser…) avant de choisir le dispositif : un objectif de mémorisation simple ne justifie pas l'immersion.<div class="chk-tags"><span class="chk-tag foster">Multimédia</span></div></label></div>
+          <div class="chk-item"><input type="checkbox" id="c1"><label for="c1"><b>Familiarisation à l'interface</b> — une séquence d'onboarding aux contrôles et à l'interface, séparée du contenu pédagogique, pour absorber l'effet de nouveauté.</label></div>
+          <div class="chk-item"><input type="checkbox" id="c10"><label for="c10"><b>Définir le niveau de Bloom visé</b> — formuler l'objectif (Mémoriser, Comprendre, Appliquer, Analyser…) avant de choisir le dispositif : un objectif de mémorisation simple ne justifie pas l'immersion.</label></div>
         </div>
         <div class="frise-stage" data-stage="1" style="display:none;">
-          <div class="chk-item"><input type="checkbox" id="c4"><label for="c4"><b>Cohérence sensorielle</b> — éliminer les détails graphiques/sonores séduisants mais non pertinents pour l'objectif pédagogique (le premier réflexe en RV est souvent d'en ajouter).<div class="chk-tags"><span class="chk-tag reduce">Cohérence</span></div></label></div>
+          <div class="chk-item"><input type="checkbox" id="c4"><label for="c4"><b>Cohérence sensorielle</b> — éliminer les détails graphiques/sonores séduisants mais non pertinents pour l'objectif pédagogique (le premier réflexe en VR est souvent d'en ajouter).<div class="chk-tags"><span class="chk-tag reduce">Cohérence</span></div></label></div>
           <div class="chk-item"><input type="checkbox" id="c2"><label for="c2"><b>Signalisation active</b> — repères visuels/sonores dans l'espace 3D pour orienter l'attention, faute de quoi le champ de vision libre dilue l'attention.<div class="chk-tags"><span class="chk-tag reduce">Signalisation</span></div></label></div>
-          <div class="chk-item"><input type="checkbox" id="c11"><label for="c11"><b>Interface diégétique en priorité</b> — intégrer les indications dans le monde (panneaux, objets, sons spatialisés) plutôt qu'en overlay 2D flottant, qui casse la cohérence spatiale.<div class="chk-tags"><span class="chk-tag reduce">Cohérence</span></div></label></div>
+          <div class="chk-item"><input type="checkbox" id="c11"><label for="c11"><b>Interface diégétique en priorité</b> — intégrer les indications dans le monde (panneaux, objets, sons spatialisés) plutôt qu'en overlay 2D flottant, qui casse la cohérence spatiale.</label></div>
         </div>
         <div class="frise-stage" data-stage="2" style="display:none;">
           <div class="chk-item"><input type="checkbox" id="c3"><label for="c3"><b>Segmentation contrôlée</b> — des étapes courtes avec reprise en main possible, plutôt qu'une scène continue ininterrompue.<div class="chk-tags"><span class="chk-tag reduce">Segmentation</span></div></label></div>
           <div class="chk-item"><input type="checkbox" id="c5"><label for="c5"><b>Modalité vocale</b> — préférer la narration orale à des panneaux de texte flottants pour ne pas saturer le canal visuel déjà sollicité par l'environnement 3D.<div class="chk-tags"><span class="chk-tag manage">Modalité</span></div></label></div>
-          <div class="chk-item"><input type="checkbox" id="c6"><label for="c6"><b>Agentivité finalisée</b> — vérifier que le contrôle donné à l'apprenant (déplacement, manipulation, avatar) sert directement l'objectif d'apprentissage, pas seulement l'engagement.<div class="chk-tags"><span class="chk-tag foster">Image / incarnation</span></div></label></div>
+          <div class="chk-item"><input type="checkbox" id="c6"><label for="c6"><b>Agentivité finalisée</b> — vérifier que le contrôle donné à l'apprenant (déplacement, manipulation, avatar) sert directement l'objectif d'apprentissage, pas seulement l'engagement.</label></div>
           <div class="chk-item"><input type="checkbox" id="c12"><label for="c12"><b>Contiguïté spatiale et temporelle</b> — placer le texte près de l'élément 3D qu'il décrit et synchroniser narration et action, pour éviter la recherche visuelle coûteuse.<div class="chk-tags"><span class="chk-tag reduce">Contiguïté</span></div></label></div>
         </div>
         <div class="frise-stage" data-stage="3" style="display:none;">
-          <div class="chk-item"><input type="checkbox" id="c7"><label for="c7"><b>Mesure de la charge</b> — intégrer une mesure subjective de charge (type NASA-TLX) en complément d'indicateurs de performance objectifs propres au domaine, pour distinguer motivation et apprentissage réel.<div class="chk-tags"><span class="chk-tag msrtag">Mesure</span></div></label></div>
+          <div class="chk-item"><input type="checkbox" id="c7"><label for="c7"><b>Mesure de la charge</b> — intégrer une mesure subjective de charge (type NASA Task Load Index — NASA-TLX) en complément d'indicateurs de performance objectifs propres au domaine, pour distinguer motivation et apprentissage réel.<div class="chk-tags"><span class="chk-tag msrtag">Mesure</span></div></label></div>
           <div class="chk-item"><input type="checkbox" id="c9"><label for="c9"><b>Perception de l'usabilité</b> — compléter par un questionnaire de qualité perçue (AttrakDiff pour les dimensions pragmatique/hédonique, SUS pour l'utilisabilité globale), afin de distinguer un problème d'apprentissage d'un problème d'expérience utilisateur.<div class="chk-tags"><span class="chk-tag msrtag">Mesure</span></div></label></div>
-          <div class="chk-item"><input type="checkbox" id="c13"><label for="c13"><b>Analyse des biais de compétence</b> — comparer l'auto-évaluation de l'apprentissage (sentiment de fluidité) aux mesures objectives pour ne pas confondre présence et acquisition réelle.<div class="chk-tags"><span class="chk-tag msrtag">Mesure</span><span class="chk-tag reduce">Redondance</span></div></label></div>
+          <div class="chk-item"><input type="checkbox" id="c13"><label for="c13"><b>Analyse des biais de compétence</b> — comparer l'auto-évaluation de l'apprentissage (sentiment de fluidité) aux mesures objectives pour ne pas confondre présence et acquisition réelle.<div class="chk-tags"><span class="chk-tag msrtag">Mesure</span></div></label></div>
         </div>
       </div>
     </div>
@@ -1373,8 +1363,8 @@
           <span class="measure-tag" style="--c:var(--teal);">Attractivité</span>
         </div>
         <div class="measure-detail">
-          <p>Distingu le qualité pragmatique (utilité/effort) et qualité hédonique (plaisir/stimulation) ; utile pour savoir si le dispositif est jugé attractif au-delà de sa seule utilisabilité.</p>
-          <a class="reflink" href="#ref-hassenzahl-2003">Hassenzahl, Burmester & Koller (2003) — AttrakDiff ↗</a>
+          <p>Distingue la qualité pragmatique (utilité/effort) et la qualité hédonique (plaisir/stimulation) ; utile pour savoir si le dispositif est jugé attractif au-delà de sa seule utilisabilité.</p>
+          <a class="reflink" href="#ref-hassenzahl-2003">Hassenzahl, Burmester & Koller (2003) — AttrakDiff ↗</a><br><a class="reflink" href="#ref-lallemand-2015">Lallemand et al. (2015) — version française ↗</a>
         </div>
       </div>
 
@@ -1430,67 +1420,80 @@
     <div class="reflist">
       <h3 class="ref-group" style="color:var(--amber);">Théorie multimédia &amp; charge cognitive</h3>
       <div class="ref" id="ref-baddeley-1974"><a href="https://doi.org/10.1016/s0079-7421(08)60452-1" target="_blank" rel="noopener noreferrer">Baddeley, A. D., &amp; Hitch, G. J. (1974)</a>. Working memory. In G. A. Bower (Ed.), <i>Recent Advances in Learning and Motivation</i> (Vol. 8, pp. 47–89). Academic Press. https://doi.org/10.1016/s0079-7421(08)60452-1</div>
-      <div class="ref" id="ref-kahneman-2011"><a href="https://durmonski.com/wp-content/uploads/2021/09/Think_Workbook_005.pdf" target="_blank" rel="noopener noreferrer">Kahneman, D. (2011)</a>. <i>Fast and slow thinking</i>. Allen Lane and Penguin Books.</div>
-      <div class="ref" id="ref-mayer-2005"><a href="https://books.google.fr/books?hl=en&amp;lr=&amp;id=SSLdo1MLIywC&amp;oi=fnd&amp;pg=PA1&amp;dq=The+Cambridge+handbook+of+multimedia+learning+(3rd+ed.).+Cambridge+University+Press&amp;ots=uWBaQ9V6Ky&amp;sig=2GpyuS5UaiUwrp0a2k7PN49wkUM&amp;redir_esc=y#v=onepage&amp;q&amp;f=false" target="_blank" rel="noopener noreferrer">Mayer, R. E. (2005)</a>. Introduction to multimedia learning. <i>The Cambridge handbook of multimedia learning</i>, 2(1), 24.</div>
+      <div class="ref" id="ref-baddeley-2000"><a href="https://doi.org/10.1016/S1364-6613(00)01538-2" target="_blank" rel="noopener noreferrer">Baddeley, A. D. (2000). The episodic buffer: A new component of working memory? <i>Trends in Cognitive Sciences</i>, <i>4</i>(11), 417–423. https://doi.org/10.1016/S1364-6613(00)01538-2</a></div>
+      <div class="ref" id="ref-chandler-1991"><a href="https://doi.org/10.1207/s1532690xci0804_2" target="_blank" rel="noopener noreferrer">Chandler, P., &amp; Sweller, J. (1991). Cognitive load theory and the format of instruction. <i>Cognition and Instruction</i>, <i>8</i>(4), 293–332. https://doi.org/10.1207/s1532690xci0804_2</a></div>
+      <div class="ref" id="ref-cowan-2001"><a href="https://doi.org/10.1017/S0140525X01003922" target="_blank" rel="noopener noreferrer">Cowan, N. (2001). The magical number 4 in short-term memory: A reconsideration of mental storage capacity. <i>Behavioral and Brain Sciences</i>, <i>24</i>(1), 87–114. https://doi.org/10.1017/S0140525X01003922</a></div>
+      <div class="ref" id="ref-fiorella-mayer-2015"><a href="https://doi.org/10.1017/CBO9781107707085" target="_blank" rel="noopener noreferrer">Fiorella, L., &amp; Mayer, R. E. (2015). <i>Learning as a generative activity: Eight learning strategies that promote understanding</i>. Cambridge University Press. https://doi.org/10.1017/CBO9781107707085</a></div>
+      <div class="ref" id="ref-harp-mayer-1998"><a href="https://doi.org/10.1037/0022-0663.90.3.414" target="_blank" rel="noopener noreferrer">Harp, S. F., &amp; Mayer, R. E. (1998). How seductive details do their damage: A theory of cognitive interest in science learning. <i>Journal of Educational Psychology</i>, <i>90</i>(3), 414–434. https://doi.org/10.1037/0022-0663.90.3.414</a></div>
+      <div class="ref" id="ref-kahneman-2011"><a href="https://us.macmillan.com/books/9780374533557/thinkingfastandslow" target="_blank" rel="noopener noreferrer">Kahneman, D. (2011)</a>. <i>Thinking, fast and slow</i>. Farrar, Straus and Giroux.</div>
+            <div class="ref" id="ref-mayer-2005-ctml"><a href="https://doi.org/10.1017/CBO9780511816819" target="_blank" rel="noopener noreferrer">Mayer, R. E. (2005)</a>. Cognitive theory of multimedia learning. In R. E. Mayer (Ed.), <i>The Cambridge handbook of multimedia learning</i> (pp. 31–48). Cambridge University Press.</div>
+<div class="ref" id="ref-mayer-2005"><a href="https://doi.org/10.1017/CBO9780511816819" target="_blank" rel="noopener noreferrer">Mayer, R. E. (2005)</a>. Introduction to multimedia learning. In R. E. Mayer (Ed.), <i>The Cambridge handbook of multimedia learning</i> (pp. 1–16). Cambridge University Press. https://doi.org/10.1017/CBO9780511816819</div>
+      <div class="ref" id="ref-mayer-2014"><a href="https://doi.org/10.1017/CBO9781139547369" target="_blank" rel="noopener noreferrer">Mayer, R. E. (Ed.). (2014). <i>The Cambridge handbook of multimedia learning</i> (2e éd.). Cambridge University Press. https://doi.org/10.1017/CBO9781139547369</a></div>
+      <div class="ref" id="ref-mayer-2024"><a href="https://doi.org/10.1007/s10648-023-09842-1" target="_blank" rel="noopener noreferrer">Mayer, R. E. (2024)</a>. The past, present, and future of the cognitive theory of multimedia learning. <i>Educational Psychology Review</i>, <i>36</i>(1), 8. https://doi.org/10.1007/s10648-023-09842-1</div>
+      <div class="ref" id="ref-mayer-fiorella-2014"><a href="https://doi.org/10.1017/CBO9781139547369" target="_blank" rel="noopener noreferrer">Mayer, R. E., &amp; Fiorella, L. (2014). Principles for reducing extraneous processing in multimedia learning: Coherence, signaling, redundancy, spatial contiguity, and temporal contiguity principles. In R. E. Mayer (Ed.), <i>The Cambridge handbook of multimedia learning</i> (2e éd., pp. 279–315). Cambridge University Press.</a></div>
+      <div class="ref" id="ref-mayer-pilegard-2014"><a href="https://doi.org/10.1017/CBO9781139547369" target="_blank" rel="noopener noreferrer">Mayer, R. E., &amp; Pilegard, C. (2014). Principles for managing essential processing in multimedia learning: Segmenting, pre-training, and modality principles. In R. E. Mayer (Ed.), <i>The Cambridge handbook of multimedia learning</i> (2e éd., pp. 316–344). Cambridge University Press.</a></div>
+      <div class="ref" id="ref-paas-1994"><a href="https://doi.org/10.1037/0022-0663.86.1.122" target="_blank" rel="noopener noreferrer">Paas, F. G. W. C., &amp; Van Merriënboer, J. J. G. (1994). Variability of worked examples and transfer of geometrical problem-solving skills: A cognitive-load approach. <i>Journal of Educational Psychology</i>, <i>86</i>(1), 122–133. https://doi.org/10.1037/0022-0663.86.1.122</a></div>
+      <div class="ref" id="ref-paivio-1986">Paivio, A. (1986). <i>Mental representations: A dual-coding approach</i>. Oxford University Press.</div>
       <div class="ref" id="ref-sweller-1988"><a href="https://onlinelibrary.wiley.com/doi/pdfdirect/10.1207/s15516709cog1202_4" target="_blank" rel="noopener noreferrer">Sweller, J. (1988)</a>. Cognitive load during problem solving: Effects on learning. <i>Cognitive Science</i>, <i>12</i>(2), 257–285.</div>
       <div class="ref" id="ref-sweller-2019"><a href="https://link.springer.com/content/pdf/10.1007/s10648-019-09465-5.pdf" target="_blank" rel="noopener noreferrer">Sweller, J., Van Merriënboer, J. J., &amp; Paas, F. (2019)</a>. Cognitive architecture and instructional design: 20 years later. <i>Educational Psychology Review</i>, <i>31</i>(2), 261–292.</div>
 
       <h3 class="ref-group" style="color:var(--green-soft);">Objectifs pédagogiques &amp; taxonomie</h3>
       <div class="ref" id="ref-anderson-2001"><a href="https://eduq.info/xmlui/handle/11515/18824" target="_blank" rel="noopener noreferrer">Anderson, L. W., &amp; Krathwohl, D. R. (2001)</a>. <i>A taxonomy for learning, teaching, and assessing: A revision of Bloom's taxonomy of educational objectives</i>. Addison Wesley Longman.</div>
-      <div class="ref" id="ref-bloom-1956"><a href="https://publicservicesalliance.org/wp-content/uploads/2013/04/guildresearch_blooms2013.pdf" target="_blank" rel="noopener noreferrer">Bloom, B. S. (1956)</a>. Taxonomy of educational objectives. <i>Educational Objectives</i>, <i>250</i>(2025), 3.</div>
+      <div class="ref" id="ref-bloom-1956"><a href="https://archive.org/details/taxonomyofeducat0000unse_l7x5" target="_blank" rel="noopener noreferrer">Bloom, B. S., Engelhart, M. D., Furst, E. J., Hill, W. H., &amp; Krathwohl, D. R. (1956)</a>. <i>Taxonomy of educational objectives: The classification of educational goals. Handbook I: Cognitive domain</i>. New York: David McKay.</div>
       <div class="ref" id="ref-forehand-2010"><a href="https://cft.vanderbilt.edu/wp-content/uploads/sites/59/BloomsTaxonomy-mary-forehand.pdf" target="_blank" rel="noopener noreferrer">Forehand, M. (2010)</a>. Bloom’s taxonomy. <i>Emerging Perspectives on Learning, Teaching, and Technology</i>, <i>41</i>(4), 47–56.</div>
       <div class="ref" id="ref-krathwohl-2002"><a href="https://doi.org/10.1207/s15430421tip4104_2" target="_blank" rel="noopener noreferrer">Krathwohl, D. R. (2002)</a>. A revision of Bloom's taxonomy: An overview. <i>Theory Into Practice</i>, <i>41</i>(4), 212–218. https://doi.org/10.1207/s15430421tip4104_2</div>
 
       <h3 class="ref-group" style="color:var(--teal);">Modèles de l'apprentissage immersif</h3>
-      <div class="ref" id="ref-l1l2"><a href="https://doi.org/10.3390/electronics14193818" target="_blank" rel="noopener noreferrer">Chandramouli, M., Zafar, A., &amp; Williams, A. (2025)</a>. A Detailed Review of the Design and Evaluation of XR Applications in STEM Education and Training. <i>Electronics</i>, <i>14</i>(19), 3818. https://doi.org/10.3390/electronics14193818</div>
-      <div class="ref" id="ref-makransky-2021"><a href="https://doi.org/10.1007/s10648-020-09586-2" target="_blank" rel="noopener noreferrer">Makransky, G., &amp; Petersen, G. B. (2021)</a>. The Cognitive Affective Model of Immersive Learning (CAMIL): A Theoretical Research-Based Model of Learning in Immersive Virtual Reality. <i>Educational Psychology Review</i>, <i>33</i>, 937–958. https://doi.org/10.1007/s10648-020-09586-2</div>
-      <div class="ref" id="ref-makransky-2019"><a href="https://doi.org/10.1016/j.learninstruc.2017.12.007" target="_blank" rel="noopener noreferrer">Makransky, G., Terkildsen, T. S., &amp; Mayer, R. E. (2017)</a>. Adding immersive virtual reality to a science lab simulation causes more presence but less learning. <i>Learning and Instruction</i>, <i>60</i>, 225–236. https://doi.org/10.1016/j.learninstruc.2017.12.007</div>
-      <div class="ref" id="ref-makransky-2019b"><a href="https://doi.org/10.1111/jcal.12375" target="_blank" rel="noopener noreferrer">Makransky, G., Borre-Gude, S., &amp; Mayer, R. E. (2019)</a>. Motivational and cognitive benefits of training in immersive virtual reality based on multiple assessments. <i>Journal of Computer Assisted Learning</i>, <i>35</i>(6), 691–707. https://doi.org/10.1111/jcal.12375</div>
+      <div class="ref" id="ref-chandramouli-2025"><a href="https://doi.org/10.3390/electronics14193818" target="_blank" rel="noopener noreferrer">Chandramouli, M., Zafar, A., &amp; Williams, A. (2025)</a>. A Detailed Review of the Design and Evaluation of XR Applications in STEM Education and Training. <i>Electronics</i>, <i>14</i>(19), 3818. https://doi.org/10.3390/electronics14193818</div>
+      <div class="ref" id="ref-makransky-borregude-2019"><a href="https://doi.org/10.1111/jcal.12375" target="_blank" rel="noopener noreferrer">Makransky, G., Borre-Gude, S., &amp; Mayer, R. E. (2019)</a>. Motivational and cognitive benefits of training in immersive virtual reality based on multiple assessments. <i>Journal of Computer Assisted Learning</i>, <i>35</i>(6), 691–707. https://doi.org/10.1111/jcal.12375</div>
+      <div class="ref" id="ref-makransky-petersen-2021"><a href="https://doi.org/10.1007/s10648-020-09586-2" target="_blank" rel="noopener noreferrer">Makransky, G., &amp; Petersen, G. B. (2021)</a>. The Cognitive Affective Model of Immersive Learning (CAMIL): A Theoretical Research-Based Model of Learning in Immersive Virtual Reality. <i>Educational Psychology Review</i>, <i>33</i>, 937–958. https://doi.org/10.1007/s10648-020-09586-2</div>
+      <div class="ref" id="ref-makransky-terkildsen-2019"><a href="https://doi.org/10.1016/j.learninstruc.2017.12.007" target="_blank" rel="noopener noreferrer">Makransky, G., Terkildsen, T. S., &amp; Mayer, R. E. (2019)</a>. Adding immersive virtual reality to a science lab simulation causes more presence but less learning. <i>Learning and Instruction</i>, <i>60</i>, 225–236. https://doi.org/10.1016/j.learninstruc.2017.12.007</div>
       <div class="ref" id="ref-miguel-2024"><a href="https://doi.org/10.1007/s10055-023-00926-5" target="_blank" rel="noopener noreferrer">Miguel-Alonso, I., Checa, D., Guillen-Sanz, H., Bustillo, A., &amp; Hervás, F. J. (2024)</a>. Evaluation of the novelty effect in immersive Virtual Reality learning experiences. <i>Virtual Reality</i>, <i>28</i>, 27. https://doi.org/10.1007/s10055-023-00926-5</div>
       <div class="ref" id="ref-parong-2018"><a href="https://doi.org/10.1037/edu0000241" target="_blank" rel="noopener noreferrer">Parong, J., &amp; Mayer, R. E. (2018)</a>. Learning science in immersive virtual reality. <i>Journal of Educational Psychology</i>, <i>110</i>(6), 785–797. https://doi.org/10.1037/edu0000241</div>
       <div class="ref" id="ref-parong-2021"><a href="https://doi.org/10.1111/jcal.12482" target="_blank" rel="noopener noreferrer">Parong, J., &amp; Mayer, R. E. (2021)</a>. Cognitive and affective processes for learning science in immersive virtual reality. <i>Journal of Computer Assisted Learning</i>, <i>37</i>(1), 226–241. https://doi.org/10.1111/jcal.12482</div>
       <div class="ref" id="ref-radianti-2020"><a href="https://doi.org/10.1016/j.compedu.2019.103778" target="_blank" rel="noopener noreferrer">Radianti, J., Majchrzak, T. A., Fromm, J., &amp; Wohlgenannt, I. (2020)</a>. A systematic review of immersive virtual reality applications for higher education: Design elements, lessons learned, and research agenda. <i>Computers &amp; Education</i>, <i>147</i>, 103778. https://doi.org/10.1016/j.compedu.2019.103778</div>
-
       <h3 class="ref-group" style="color:var(--violet);">Attention, mémoire de travail &amp; cognition incarnée</h3>
-      <div class="ref" id="ref-bjork-1994"><a href="https://scholar.google.com/scholar?q=Bjork+1994+Memory+metamemory+considerations+training+human+beings" target="_blank" rel="noopener noreferrer">Bjork, R. A. (1994)</a>. Memory and metamemory considerations in the training of human beings. In J. Metcalfe &amp; A. P. Shimamura (Eds.), <i>Metacognition: Knowing about knowing</i> (pp. 185–205). MIT Press.</div>
-      
-      <div class="ref" id="ref-kilteni-2023"><a href="https://doi.org/10.3389/frvir.2023.1141683" target="_blank" rel="noopener noreferrer">Guy, M., Normand, J. M., Jeunet-Kelway, C., &amp; Moreau, G. (2023)</a>. The sense of embodiment in virtual reality and its assessment methods. <i>Frontiers in Virtual Reality</i>, <i>4</i>, 1141683. https://doi.org/10.3389/frvir.2023.1141683</div>
+      <div class="ref" id="ref-barsalou-2008-biais"><a href="https://www.annualreviews.org/content/journals/10.1146/annurev.psych.59.103006.093639" target="_blank" rel="noopener noreferrer">Barsalou, L. W. (2008)</a>. Grounded cognition. <i>Annual Review of Psychology</i>, <i>59</i>(1), 617–645.</div>
+      <div class="ref" id="ref-bjork-1994"><a href="https://serc.carleton.edu/resources/36564.html" target="_blank" rel="noopener noreferrer">Bjork, R. A. (1994)</a>. Memory and metamemory considerations in the training of human beings. In J. Metcalfe &amp; A. P. Shimamura (Eds.), <i>Metacognition: Knowing about knowing</i> (pp. 185–205). MIT Press.</div>
+      <div class="ref" id="ref-kilteni-2012"><a href="https://doi.org/10.1162/PRES_a_00124" target="_blank" rel="noopener noreferrer">Kilteni, K., Groten, R., &amp; Slater, M. (2012). The sense of embodiment in virtual reality. <i>Presence: Teleoperators and Virtual Environments</i>, <i>21</i>(4), 373–387. https://doi.org/10.1162/PRES_a_00124</a></div>
       <div class="ref" id="ref-konig-2021"><a href="https://doi.org/10.3389/frvir.2021.625548" target="_blank" rel="noopener noreferrer">König, S. U., Keshava, A., Clay, V., Rittershofer, K., Kuske, N., &amp; König, P. (2021)</a>. Embodied spatial knowledge acquisition in immersive virtual reality: Comparison to map exploration. <i>Frontiers in Virtual Reality</i>, <i>2</i>, 625548. https://doi.org/10.3389/frvir.2021.625548</div>
-      <div class="ref" id="ref-lavie-2005"><a href="https://d1wqtxts1xzle7.cloudfront.net/30935647/Attention_selective_Wahrnehmung_Review__Trend_Cognitive_Science_2005-libre.pdf?1392229949=&amp;response-content-disposition=inline%3A+filename%3DDistracted_and_confused_Selective_attent.pdf&amp;Expires=1784714475&amp;Signature=Ww7wkgB9xTYjuXVRvnXsrqFiPZ8DTu~Ka9v6R5~j4y3j1VXc9~tXvYYiln6GDPgygjWrpYrpSv42fLbjHMJvirXo18ZOrAkLztqP2JOl6MCHKQH97oBVc8lZocUBDbAN-v7KLX2QWJEH49NkW-f9NNDlmiZCd2sDKJAtQMSwG1Bxj-U1sPBeN-UktWCkIHLfeNP7baWtAFxyhzr0kl3Bx0z6WAR-CdRSz8StYvDkumcnmQsg2a-YDHIwR8caqKomYuSjFMSx3KD7h8ZsZqrBDTN08dwRoBiT9vayFL07P6LFnOX9GS4mYjh8rKKbi0CU~ZZiNbK743q50RkECjrzXg__&amp;Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA" target="_blank" rel="noopener noreferrer">Lavie, N. (2005)</a>. Distracted and confused?: Selective attention under load. <i>Trends in Cognitive Sciences</i>, <i>9</i>(2), 75–82.</div>
+      <div class="ref" id="ref-lavie-2005"><a href="https://doi.org/10.1016/j.tics.2004.12.004" target="_blank" rel="noopener noreferrer">Lavie, N. (2005)</a>. Distracted and confused?: Selective attention under load. <i>Trends in Cognitive Sciences</i>, <i>9</i>(2), 75–82. https://doi.org/10.1016/j.tics.2004.12.004</div>
       <div class="ref" id="ref-parasuraman-2010"><a href="https://doi.org/10.1177/0018720810376055" target="_blank" rel="noopener noreferrer">Parasuraman, R., &amp; Manzey, D. H. (2010)</a>. Complacency and bias in human use of automation: An attentional integration. <i>Human Factors</i>, <i>52</i>(3), 381–410. https://doi.org/10.1177/0018720810376055</div>
-      <div class="ref" id="ref-wickens-2008"><a href="https://interruptions.net/literature/Wickens-HF08.pdf" target="_blank" rel="noopener noreferrer">Wickens, C. D. (2008)</a>. Multiple resources and mental workload. <i>Human Factors</i>, <i>50</i>(3), 449–455.</div>
+      <div class="ref" id="ref-wickens-2005"><a href="https://corescholar.libraries.wright.edu/isap_2005/121" target="_blank" rel="noopener noreferrer">Wickens, C. D. (2005). Attentional tunneling and task management. <i>Proceedings of the 13th International Symposium on Aviation Psychology</i>, 812–817.</a></div>
+      <div class="ref" id="ref-wickens-2008"><a href="https://doi.org/10.1518/001872008X288394" target="_blank" rel="noopener noreferrer">Wickens, C. D. (2008)</a>. Multiple resources and mental workload. <i>Human Factors</i>, <i>50</i>(3), 449–455. https://doi.org/10.1518/001872008X288394</div>
 
       <h3 class="ref-group" style="color:var(--red-soft);">Biais cognitifs en contexte immersif</h3>
-      <div class="ref" id="ref-barsalou-2008-biais"><a href="https://www.annualreviews.org/content/journals/10.1146/annurev.psych.59.103006.093639" target="_blank" rel="noopener noreferrer">Barsalou, L. W. (2008)</a>. Grounded cognition. <i>Annual Review of Psychology</i>, <i>59</i>(1), 617–645.</div>
-      <div class="ref" id="ref-tversky-1974"><a href="https://doi.org/10.1126/science.185.4157.1124" target="_blank" rel="noopener noreferrer">Tversky, A., &amp; Kahneman, D. (1974)</a>. Judgment under uncertainty: Heuristics and biases. <i>Science</i>, <i>185</i>(4157), 1124–1131. https://doi.org/10.1126/science.185.4157.1124</div>
+      <div class="ref" id="ref-banakou-2018"><a href="https://doi.org/10.3389/fpsyg.2018.00917" target="_blank" rel="noopener noreferrer">Banakou, D., Kishore, S., &amp; Slater, M. (2018). Virtually Being Einstein results in an improvement in cognitive task performance and a decrease in age bias. <i>Frontiers in Psychology</i>, <i>9</i>, 917. https://doi.org/10.3389/fpsyg.2018.00917</a></div>
+            <div class="ref" id="ref-tversky-1974"><a href="https://doi.org/10.1126/science.185.4157.1124" target="_blank" rel="noopener noreferrer">Tversky, A., &amp; Kahneman, D. (1974)</a>. Judgment under uncertainty: Heuristics and biases. <i>Science</i>, <i>185</i>(4157), 1124–1131. https://doi.org/10.1126/science.185.4157.1124</div>
       <div class="ref" id="ref-yee-2007"><a href="https://doi.org/10.1111/j.1468-2958.2007.00299.x" target="_blank" rel="noopener noreferrer">Yee, N., &amp; Bailenson, J. N. (2007)</a>. The Proteus effect: Self transformations in virtual reality. <i>Human Communication Research</i>, <i>33</i>(3), 271–290. https://doi.org/10.1111/j.1468-2958.2007.00299.x</div>
 
       <h3 class="ref-group" style="color:var(--amber);">UX et ergonomie des environnements immersifs</h3>
       <div class="ref" id="ref-coban-2022"><a href="https://doi.org/10.1016/j.edurev.2022.100452" target="_blank" rel="noopener noreferrer">Çoban, M., Bolat, Y. I., &amp; Göksu, I. (2022)</a>. The potential of immersive virtual reality to enhance learning: A meta-analysis. <i>Educational Research Review</i>, <i>36</i>, 100452. https://doi.org/10.1016/j.edurev.2022.100452</div>
       <div class="ref" id="ref-cummings-2016"><a href="https://doi.org/10.1080/15213269.2015.1015740" target="_blank" rel="noopener noreferrer">Cummings, J. J., &amp; Bailenson, J. N. (2016)</a>. How immersive is enough? A meta-analysis of the effect of immersive technology on user presence. <i>Media Psychology</i>, <i>19</i>(2), 272–309. https://doi.org/10.1080/15213269.2015.1015740</div>
       <div class="ref" id="ref-hamilton-2021"><a href="https://doi.org/10.1007/s40692-020-00169-2" target="_blank" rel="noopener noreferrer">Hamilton, D., McKechnie, J., Edgerton, E., &amp; Wilson, C. (2021)</a>. Immersive virtual reality as a pedagogical tool in education: A systematic literature review of quantitative learning outcomes and experimental design. <i>Journal of Computing in Higher Education</i>, <i>33</i>, 1–21. https://doi.org/10.1007/s40692-020-00169-2</div>
-      <div class="ref" id="ref-jerald-2018"><a href="https://doi.org/10.1080/10447318.2018.1443898" target="_blank" rel="noopener noreferrer">Sutcliffe, A. G., Poullis, C., Gregoriades, A., Katsouri, I., Tzanavari, A., &amp; Herakleous, K. (2018)</a>. Reflecting on the design process for virtual reality applications. <i>International Journal of Human–Computer Interaction</i>. https://doi.org/10.1080/10447318.2018.1443898</div>
       <div class="ref" id="ref-juliano-2022"><a href="https://doi.org/10.1186/s12984-022-01084-6" target="_blank" rel="noopener noreferrer">Juliano, J. M., Schweighofer, N., &amp; Liew, S. L. (2022)</a>. Increased cognitive load in immersive virtual reality during visuomotor adaptation is associated with decreased long-term retention and context transfer. <i>Journal of Neuroengineering and Rehabilitation</i>, <i>19</i>(1), 106. https://doi.org/10.1186/s12984-022-01084-6</div>
+      <div class="ref" id="ref-mehmedova-2026"><a href="https://doi.org/10.1016/j.displa.2026.103452" target="_blank" rel="noopener noreferrer">Mehmedova, E., Berrezueta-Guzman, S., &amp; Wagner, S. (2026)</a>. Virtual reality user interface design: Best practices and implementation. <i>Displays</i>, <i>93</i>, 103452. https://doi.org/10.1016/j.displa.2026.103452</div>
       <div class="ref" id="ref-merchant-2014"><a href="https://doi.org/10.1016/j.compedu.2013.07.033" target="_blank" rel="noopener noreferrer">Merchant, Z., Goetz, E. T., Cifuentes, L., Keeney-Kennicutt, W., &amp; Davis, T. J. (2014)</a>. Effectiveness of virtual reality-based instruction on students' learning outcomes in K-12 and higher education: A meta-analysis. <i>Computers &amp; Education</i>, <i>70</i>, 29–40. https://doi.org/10.1016/j.compedu.2013.07.033</div>
-      <div class="ref" id="ref-mehmedova-2026"><a href="https://www.sciencedirect.com/science/article/pii/S0141938226001150" target="_blank" rel="noopener noreferrer">Mehmedova, E., Berrezueta-Guzman, S., &amp; Wagner, S. (2026)</a>. Virtual reality user interface design: Best practices and implementation. <i>Displays</i>, <i>103452</i>.</div>
       <div class="ref" id="ref-nielsen-2020"><a href="https://www.nngroup.com/articles/usability-heuristics-virtual-reality/" target="_blank" rel="noopener noreferrer">Nielsen, J. (2020)</a>. <i>10 usability heuristics applied to virtual reality</i>. Nielsen Norman Group.</div>
       <div class="ref" id="ref-petersen-2022"><a href="https://doi.org/10.1016/j.compedu.2021.104429" target="_blank" rel="noopener noreferrer">Petersen, G. B., Petkakis, G., &amp; Makransky, G. (2022)</a>. A study of how immersion and interactivity drive VR learning. <i>Computers &amp; Education</i>, <i>179</i>, Article 104429. https://doi.org/10.1016/j.compedu.2021.104429</div>
       <div class="ref" id="ref-rebenitsch-2016"><a href="https://doi.org/10.1007/s10055-016-0285-9" target="_blank" rel="noopener noreferrer">Rebenitsch, L., &amp; Owen, C. (2016)</a>. Review on cybersickness in applications and visual displays. <i>Virtual Reality</i>, <i>20</i>(2), 101–125. https://doi.org/10.1007/s10055-016-0285-9</div>
       <div class="ref" id="ref-stanney-1997"><a href="https://doi.org/10.1177/107118139704100292" target="_blank" rel="noopener noreferrer">Stanney, K. M., Kennedy, R. S., &amp; Drexler, J. M. (1997)</a>. Cybersickness is not simulator sickness. <i>Proceedings of the Human Factors and Ergonomics Society Annual Meeting</i>, <i>41</i>(2), 1138–1142. https://doi.org/10.1177/107118139704100292</div>
       <div class="ref" id="ref-sutcliffe-2004"><a href="https://doi.org/10.1016/j.intcom.2004.05.001" target="_blank" rel="noopener noreferrer">Sutcliffe, A. G., &amp; Gault, B. (2004)</a>. Heuristic evaluation of virtual reality applications. <i>Interacting with Computers</i>, <i>16</i>(4), 831–849. https://doi.org/10.1016/j.intcom.2004.05.001</div>
+      <div class="ref" id="ref-sutcliffe-2019"><a href="https://doi.org/10.1080/10447318.2018.1443898" target="_blank" rel="noopener noreferrer">Sutcliffe, A. G., Poullis, C., Gregoriades, A., Katsouri, I., Tzanavari, A., &amp; Herakleous, K. (2019)</a>. Reflecting on the design process for virtual reality applications. <i>International Journal of Human–Computer Interaction</i>, <i>35</i>(2), 168–179. https://doi.org/10.1080/10447318.2018.1443898</div>
       <div class="ref" id="ref-wu-2020"><a href="https://doi.org/10.1111/bjet.13023" target="_blank" rel="noopener noreferrer">Wu, B., Yu, X., &amp; Gu, X. (2020)</a>. Effectiveness of immersive virtual reality using head-mounted displays on learning performance: A meta-analysis. <i>British Journal of Educational Technology</i>, <i>51</i>(6), 1991–2005. https://doi.org/10.1111/bjet.13023</div>
-
       <h3 class="ref-group" style="color:var(--teal);">Mesures &amp; échelles (utilisées dans « Instruments de mesure »)</h3>
       <div class="ref" id="ref-brooke-1996"><a href="https://www.researchgate.net/publication/319394819_SUS_--_a_quick_and_dirty_usability_scale" target="_blank" rel="noopener noreferrer">Brooke, J. (1996)</a>. SUS: A quick and dirty usability scale. In P. W. Jordan, B. Thomas, B. A. Weerdmeester, &amp; I. L. McClelland (Eds.), <i>Usability evaluation in industry</i> (pp. 189–194). Taylor &amp; Francis.</div>
-      <div class="ref" id="ref-hassenzahl-2003"><a href="https://www.researchgate.net/publication/200085886_AttrakDiff_Ein_Fragebogen_zur_Messung_wahrgenommener_hedonischer_und_pragmatischer_Qualitat" target="_blank" rel="noopener noreferrer">Hassenzahl, M., Burmester, M., &amp; Koller, F. (2003)</a>. AttrakDiff: Ein Fragebogen zur Messung wahrgenommener hedonischer und pragmatischer Qualität. In J. Ziegler &amp; G. Szwillus (Eds.), <i>Mensch &amp; Computer 2003</i> (pp. 187–196). B.G. Teubner.</div>
+      <div class="ref" id="ref-hassenzahl-2003"><a href="https://doi.org/10.1007/978-3-322-80058-9_19" target="_blank" rel="noopener noreferrer">Hassenzahl, M., Burmester, M., &amp; Koller, F. (2003)</a>. AttrakDiff: Ein Fragebogen zur Messung wahrgenommener hedonischer und pragmatischer Qualität. In J. Ziegler &amp; G. Szwillus (Eds.), <i>Mensch &amp; Computer 2003</i> (pp. 187–196). B.G. Teubner.</div>
       <div class="ref" id="ref-kennedy-1993"><a href="https://doi.org/10.1207/s15327108ijap0303_3" target="_blank" rel="noopener noreferrer">Kennedy, R. S., Lane, N. E., Berbaum, K. S., &amp; Lilienthal, M. G. (1993)</a>. Simulator Sickness Questionnaire: An enhanced method for quantifying simulator sickness. <i>The International Journal of Aviation Psychology</i>, <i>3</i>(3), 203–220. https://doi.org/10.1207/s15327108ijap0303_3</div>
+      <div class="ref" id="ref-kim-2018"><a href="https://doi.org/10.1016/j.apergo.2017.12.016" target="_blank" rel="noopener noreferrer">Kim, H. K., Park, J., Choi, Y., &amp; Choe, M. (2018). Virtual reality sickness questionnaire (VRSQ): Motion sickness measurement index in a virtual reality environment. <i>Applied Ergonomics</i>, <i>69</i>, 66–73. https://doi.org/10.1016/j.apergo.2017.12.016</a></div>
       <div class="ref" id="ref-lallemand-2015"><a href="https://www.sciencedirect.com/science/article/abs/pii/S1162908815000651" target="_blank" rel="noopener noreferrer">Lallemand, C., Koenig, V., Gronier, G., &amp; Martin, R. (2015)</a>. Création et validation d’une version française du questionnaire AttrakDiff pour l’évaluation de l’expérience utilisateur des systèmes interactifs. <i>Revue européenne de psychologie appliquée</i>, <i>65</i>(5), 239–252.</div>
       <div class="ref" id="ref-laugwitz-2008"><a href="https://doi.org/10.1007/978-3-540-89350-9_6" target="_blank" rel="noopener noreferrer">Laugwitz, B., Held, T., &amp; Schrepp, M. (2008)</a>. Construction and evaluation of a user experience questionnaire. In A. Holzinger (Ed.), <i>HCI and Usability for Education and Work</i> (pp. 63–76). Springer. https://doi.org/10.1007/978-3-540-89350-9_6</div>
       <div class="ref" id="ref-schubert-2001"><a href="https://doi.org/10.1162/105474601300343603" target="_blank" rel="noopener noreferrer">Schubert, T., Friedmann, F., &amp; Regenbrecht, H. (2001)</a>. The experience of presence: Factor analytic insights. <i>Presence: Teleoperators and Virtual Environments</i>, <i>10</i>(3), 277–295. https://doi.org/10.1162/105474601300343603</div>
+
     </div>
   </section>
   <footer id="refs">
-    <p>Fiche de synthèse à visée pédagogique — les références ont été vérifiées et formatées en norme APA 7 avec DOI officiels. Cliquez sur le nom des auteurs pour accéder aux sources.</p>
+    <p>Fiche de synthèse à visée pédagogique — références formatées en norme APA 7 ; le nom des auteurs renvoie vers la source.</p>
   </footer>
 
 </main>
@@ -1500,6 +1503,28 @@
 
 <script>
   // ---- Hero immersion slider (modèle à deux leviers) ----
+  // Constantes du modèle (extraction des magic numbers pour lisibilité/maintenance)
+  const INTR_BASE = 30;       // % charge intrinsèque en 2D
+  const INTR_SLOPE = 0.12;    // augmentation intrinsèque par point d'immersion
+  const EXTR_BASE = 15;       // % charge extrinsèque de base en 2D
+  const EXTR_SLOPE = 0.30;    // coût brut immersion par point
+  const EXTR_FLOOR = 8;       // plancher charge extrinsèque (coût nouveauté irréductible)
+  const MITIG_BASE = 8;       // mitigation base
+  const MITIG_SLOPE = 0.35;   // mitigation croissante avec immersion
+  const SAT_K = 45;           // constante de saturation de la courbe de présence (hypothèse de modélisation)
+  const PRES_MAX = 90;        // présence max (%)
+  const PRES_FLOOR_FACTOR = 0.15; // facteur présence plancher (conception défaillante)
+  const GERM_RISK = 25;       // seuil risque charge germane
+  const GERM_TENSION = 40;    // seuil tension charge germane
+  const GERM_GOOD = 50;       // seuil confortable charge germane
+  const DESIGN_LOW = 35;      // seuil conception mal maîtrisée
+  const DESIGN_MID = 70;      // seuil conception moyennement maîtrisée
+  const PRES_MIN_OPTIMAL = 40; // présence min pour Optimal immersif
+  const COMPETE_PRES_MIN = 50; // présence min compétition CAMIL
+  const COMPETE_Q_MIN = 45;   // conception min compétition CAMIL
+  const COMPETE_Q_MAX = 55;   // conception max compétition CAMIL
+  const IMMERSION_2D_MAX = 20; // seuil immersion 2D
+
   try {
   const slider = document.getElementById('immersionSlider');
   const design = document.getElementById('designSlider');
@@ -1518,81 +1543,81 @@
   const fit = document.getElementById('fitBadge');
   const interp = document.getElementById('interp');
 
-  // Modèle : capacité de la mémoire de travail FINIE (100 %) = intrinsèque + extrinsèque + germane.
-  //  - Intrinsèque : dépend de la complexité ET de l'interactivité des éléments à traiter simultanément (Sweller, §783).
-  //      La RV ajoute des éléments interactifs simultanés (corps virtuel, navigation, champ libre) → elle MONTE avec l'immersion.
+  // Modèle : capacité de la mémoire de travail FINIE (100 %) = intrinsèque + extrinsèque + germane.
+  //  - Intrinsèque : dépend de la complexité ET de l'interactivité des éléments à traiter simultanément (Sweller).
+  //      La VR ajoute des éléments interactifs simultanés (corps virtuel, navigation, champ libre) → elle MONTE avec l'immersion.
   //  - Extrinsèque : MONTE avec l'immersion (nouveauté, richesse sensorielle, champ libre)
   //      mais est RÉDUCTIBLE par la conception (signalisation, pré-entraînement, cohérence, modalité) — cible des principes de Mayer.
   //  - Germane : la place RESTANTE. Elle soutient présence + apprentissage génératif.
   //      Quand la conception maîtrise l'extrinsèque, on la VOIT remonter en VR.
-  //  - Présence (CAMIL) : bénéfice POTENTIEL de l'immersion. Rendements décroissants (Cummings & Bailenson, §1024),
-  //      et une conception défaillante l'EFFONDRE (§870). Ne garantit pas l'apprentissage si l'extrinsèque a pompé la capacité.
+  //  - Présence (CAMIL) : bénéfice POTENTIEL de l'immersion. Rendements décroissants (hypothèse de modélisation),
+  //      et une conception défaillante l'effondre. Ne garantit pas l'apprentissage si l'extrinsèque a pompé la capacité.
 
   function updateSlider(){
-    const v = parseInt(slider.value, 10);   // immersion : 0 = 2D, 100 = RV haute fidélité
-    const q = parseInt(design.value, 10);   // conception : 0 = pauvre, 100 = maîtrisée
+      const v = parseInt(slider.value, 10);   // immersion : 0 = 2D, 100 = VR haute fidélité
+      const q = parseInt(design.value, 10);   // conception : 0 = pauvre, 100 = maîtrisée
 
-    // Intrinsèque MOBILE : complexité + interactivité des éléments traités en parallèle (Sweller, §783).
-    // 2D (v=0) -> 30 % ; RV haute fidélité (v=100) -> 42 % (la RV empile plus d'éléments à gérer à la fois).
-    const INTR = 30 + Math.round(0.12 * v);
+      // Intrinsèque MOBILE : complexité + interactivité des éléments traités en parallèle (Sweller).
+      // 2D (v=0) -> 30 % ; VR haute fidélité (v=100) -> 42 % (la VR empile plus d'éléments à gérer à la fois).
+      const INTR = INTR_BASE + Math.round(INTR_SLOPE * v);
 
-    const baseExtr   = 15 + v * 0.30;                       // coût brut de l'immersion : 15 -> 45
-    const mitigation = (q / 100) * (8 + v * 0.35);          // gain de conception, croissant avec l'immersion
-    const extr = Math.max(8, Math.round(baseExtr - mitigation)); // plancher 8 : coût de nouveauté irréductible
-    const germ = 100 - INTR - extr;                          // reste de capacité
-    // Présence (CAMIL) :
-    //  - sat(v) : rendements décroissants de l'immersion sur la présence (Cummings & Bailenson, §1024).
-    //  - facteur (0,15 + 0,85 * q/100) : à q=0 la conception défaillante EFFONDRE la présence (~15 %), à q=100 elle la libère.
-    const sat = (1 - Math.exp(-v / 45)) / (1 - Math.exp(-100 / 45));
-    const presence = Math.round(90 * sat * (0.15 + 0.85 * q / 100));
+      const baseExtr   = EXTR_BASE + v * EXTR_SLOPE;                       // coût brut de l'immersion : 15 -> 45
+      const mitigation = (q / 100) * (MITIG_BASE + v * MITIG_SLOPE);      // gain de conception, croissant avec l'immersion
+      const extr = Math.max(EXTR_FLOOR, Math.round(baseExtr - mitigation)); // plancher 8 : coût de nouveauté irréductible
+      const germ = 100 - INTR - extr;                          // reste de capacité
+      // Présence (CAMIL) :
+      //  - sat(v) : rendements décroissants de l'immersion sur la présence (hypothèse de modélisation).
+      //  - facteur (0,15 + 0,85 * q/100) : à q=0 la conception défaillante EFFONDRE la présence (~15 %), à q=100 elle la libère.
+      const sat = (1 - Math.exp(-v / SAT_K)) / (1 - Math.exp(-100 / SAT_K));
+      const presence = Math.round(PRES_MAX * sat * (PRES_FLOOR_FACTOR + 0.85 * q / 100));
 
-    segI.style.width = INTR + '%';
-    segE.style.width = extr + '%';
-    segG.style.width = germ + '%';
+    segI.style.width = INTR + '\u00a0%';
+    segE.style.width = extr + '\u00a0%';
+    segG.style.width = germ + '\u00a0%';
     segG.classList.toggle('warn', germ >= 25 && germ < 40);
     segG.classList.toggle('risk', germ < 25);
-    barP.style.width = presence + '%';
-    valI.textContent = INTR + '%';
-    valE.textContent = extr + '%';
-    valG.textContent = germ + '%';
-    valP.textContent = presence + '%';
-    tagI.innerHTML = '<span class="t-label">Intrinsèque</span><span class="t-val">' + INTR + ' %</span>';
-    tagE.innerHTML = '<span class="t-label">Extrinsèque</span><span class="t-val">' + extr + ' %</span>';
-    tagG.innerHTML = '<span class="t-label">Germane</span><span class="t-val">' + germ + ' %</span>';
+    barP.style.width = presence + '\u00a0%';
+    valI.textContent = INTR + '\u00a0%';
+    valE.textContent = extr + '\u00a0%';
+    valG.textContent = germ + '\u00a0%';
+    valP.textContent = presence + '\u00a0%';
+    tagI.innerHTML = '<span class="t-label">Intrinsèque</span><span class="t-val">' + INTR + '\u00a0%</span>';
+    tagE.innerHTML = '<span class="t-label">Extrinsèque</span><span class="t-val">' + extr + '\u00a0%</span>';
+    tagG.innerHTML = '<span class="t-label">Germane</span><span class="t-val">' + germ + '\u00a0%</span>';
 
     // Badge d'adéquation : combine charge germane restante, qualité de conception,
-    // présence mobilisée et compétition CAMIL (Makransky).
-    // Deux sens d'« optimal » (§844, §970) :
-    //   - Optimal (2D) : 2D bien conçue = optimal pour l'apprentissage, sans bénéfice immersif.
-    //   - Optimal (immersif) : il faut PRÉSENCE + CONCEPTION maîtrisée (sinon on confond présence et apprentissage, §929).
-    let base;                                   // 'risk' | 'tension' | 'good' | 'ok'
-    if (germ < 25) base = 'risk';
-    else if (germ < 40) base = 'tension';
-    else if (germ < 50) base = 'good';
-    else base = 'ok';
+        // présence mobilisée et compétition CAMIL (Makransky).
+        // Deux sens d'« optimal » :
+        //   - Optimal (2D) : 2D bien conçue = optimal pour l'apprentissage, sans bénéfice immersif.
+        //   - Optimal (immersif) : il faut PRÉSENCE + CONCEPTION maîtrisée (sinon on confond présence et apprentissage).
+        let base;                                   // 'risk' | 'tension' | 'good' | 'ok'
+        if (germ < GERM_RISK) base = 'risk';
+        else if (germ < GERM_TENSION) base = 'tension';
+        else if (germ < GERM_GOOD) base = 'good';
+        else base = 'ok';
 
-    // La conception plafonne le niveau maximal atteignable.
-    if (q < 35 && base === 'ok') base = 'tension';     // mal conçu : jamais au-delà de Tension
-    else if (q < 70 && base === 'ok') base = 'good';   // moyen : pas Optimal immersif
+        // La conception plafonne le niveau maximal atteignable.
+        if (q < DESIGN_LOW && base === 'ok') base = 'tension';     // mal conçu : jamais au-delà de Tension
+        else if (q < DESIGN_MID && base === 'ok') base = 'good';   // moyen : pas Optimal immersif
 
-    // « Optimal » : germane ≥ 50 + conception maîtrisée + présence mobilisée (sinon paradoxe 2D q=100 :
-    // présence nulle mais badge Optimal). Le cas 2D est distingué dans le message (§844 : optimal apprentissage sans bénéfice immersif).
-    if (base === 'ok' && presence < 40) base = 'good';
+        // « Optimal » : germane ≥ 50 + conception maîtrisée + présence mobilisée (sinon paradoxe 2D q=100 :
+        // présence nulle mais badge Optimal). Le cas 2D est distingué dans le message (optimal apprentissage sans bénéfice immersif).
+        if (base === 'ok' && presence < PRES_MIN_OPTIMAL) base = 'good';
 
-    // Distinguer l'Optimal propre à la 2D (§844) pour le message ; le badge reste « Optimal » dans les deux cas.
-    const is2D = (base === 'ok' && v < 20);
+        // Distinguer l'Optimal propre à la 2D pour le message ; le badge reste « Optimal » dans les deux cas.
+        const is2D = (base === 'ok' && v < IMMERSION_2D_MAX);
 
-    // D : compétition CAMIL (Makransky) — présence élevée en environnement mal conçu
-    // cannibalise l'apprentissage factuel. Fenêtre 45-55 lissée (vs seuil sec q=50) pour éviter un saut non documenté.
-    const compete = presence >= 50 && q >= 45 && q <= 55;
-    if (compete && base !== 'risk' && !is2D && base === 'ok') base = 'tension';
+        // D : compétition CAMIL (Makransky) — présence élevée en environnement mal conçu
+        // cannibalise l'apprentissage factuel. Fenêtre 45-55 lissée (vs seuil sec q=50) pour éviter un saut non documenté.
+        const compete = presence >= COMPETE_PRES_MIN && q >= COMPETE_Q_MIN && q <= COMPETE_Q_MAX;
+        if (compete && base !== 'risk' && !is2D && base === 'ok') base = 'tension';
 
     const fitMap = { risk:'Risque', tension:'Tension', good:'Confortable', ok:'Optimal' };
     fit.className = 'fit-badge ' + base;
     fit.textContent = fitMap[base];
     const fitTips = {
-      risk:    "Risque : la charge extrinsèque pompe la capacité — l'apprentissage est en danger. Remonte la conception ou baisse l'immersion.",
-      tension: "Tension : un levier tire dans le sens contraire de l'autre (présence élevée mais conception à la limite, ou inverse). Surveille les deux curseurs.",
+      risk:    "Risque : la charge extrinsèque pompe la capacité — l'apprentissage est en danger. <b>Remonter</b> la conception ou <b>baisser</b> l'immersion.",
+      tension: "Tension : un levier tire dans le sens contraire de l'autre (présence élevée mais conception à la limite, ou inverse). <b>Surveiller</b> les deux curseurs.",
       good:    "Confortable : charge équilibrée, mais le bénéfice immersif n'est pas encore maximal. Une conception maîtrisée débloquerait l'Optimal.",
       ok:      is2D
         ? "Optimal (2D) : conditions idéales pour l'apprentissage en écran 2D — sans bénéfice immersif (CAMIL ne s'applique qu'en immersion)."
@@ -1603,9 +1628,9 @@
     // Niveau d'immersion (libellé)
     let level;
     if (v < 20) level = "Immersion faible (multimédia 2D)";
-    else if (v < 55) level = "Immersion intermédiaire (vidéo 360°, RV non immersive)";
-    else if (v < 85) level = "RV immersive";
-    else level = "RV immersive à haute fidélité";
+    else if (v < 55) level = "Immersion intermédiaire (vidéo 360°, VR non immersive)";
+    else if (v < 85) level = "VR immersive";
+    else level = "VR immersive à haute fidélité";
 
     // Qualité de conception (libellé)
     let dlevel;
@@ -1617,19 +1642,19 @@
     //   support (immersion) + conception -> charge extrinsèque -> place germane restante -> (présence CAMIL).
     let msg;
     if (germ >= 50){
-      msg = "<strong>" + level + ", " + dlevel + ".</strong> La conception libère largement la capacité : il reste environ <strong>" + germ + " % de charge germane utile</strong> pour l'apprentissage génératif. Les principes de Mayer font pleinement leur effet.";
-      if (is2D) msg += " En 2D, la présence est nulle par définition (CAMIL ne s'applique qu'en immersion) : c'est <strong>optimal pour l'apprentissage, sans bénéfice immersif</strong> — exactement ce que dit le document (§844).";
-      else msg += " En RV, la présence atteint <strong>" + presence + " %</strong> : bénéfice immersif réel, sans cannibaliser l'apprentissage factuel.";
+      msg = "<strong>" + level + ", " + dlevel + ".</strong> La conception libère largement la capacité : il reste environ <strong>" + germ + "\u00a0% de charge germane utile</strong> pour l'apprentissage génératif. Les principes de Mayer font pleinement leur effet.";
+      if (is2D) msg += " En 2D, la présence est nulle par définition (CAMIL ne s'applique qu'en immersion) : c'est <strong>optimal pour l'apprentissage, sans bénéfice immersif</strong>.";
+      else msg += " En VR, la présence atteint <strong>" + presence + "\u00a0%</strong> : bénéfice immersif réel, sans cannibaliser l'apprentissage factuel.";
     } else if (germ >= 40){
-      msg = "<strong>" + level + ", " + dlevel + ".</strong> Charge germane confortable (<strong>" + germ + " %</strong>) : assez de place utile. Présence (" + presence + " %) et apprentissage peuvent coexister.";
+      msg = "<strong>" + level + ", " + dlevel + ".</strong> Charge germane confortable (<strong>" + germ + "\u00a0%</strong>) : assez de place utile. Présence (" + presence + "\u00a0%) et apprentissage peuvent coexister.";
     } else if (germ >= 25){
-      msg = "<strong>" + level + ", " + dlevel + ".</strong> Tension : l'extrinsèque rogne la germane (plus que <strong>" + (100 - germ - 40) + " % de marge</strong> avant le seuil d'alerte). Renforcer signalisation et pré-entraînement pour éviter que la présence (CAMIL) ne cannibalise l'apprentissage factuel.";
+      msg = "<strong>" + level + ", " + dlevel + ".</strong> Tension : l'extrinsèque rogne la germane (il reste <strong>" + (GERM_TENSION - germ) + " points avant le seuil d'alerte de 40 %</strong>). Renforcer signalisation et pré-entraînement pour éviter que la présence (CAMIL) ne cannibalise l'apprentissage factuel.";
     } else {
-      msg = "<strong>" + level + ", " + dlevel + ".</strong> L'extrinsèque sature la capacité (germane à <strong>" + germ + " %</strong>, sous le seuil d'alerte). Sans conception, l'immersion ne tient pas : la présence s'effondre (" + presence + " %) et l'apprentissage avec. Garder en tête le mirage « plus d'immersion = plus d'apprentissage » (Makransky et al., 2019).";
+      msg = "<strong>" + level + ", " + dlevel + ".</strong> L'extrinsèque sature la capacité (germane à <strong>" + germ + "\u00a0%</strong>, sous le seuil d'alerte). Sans conception, l'immersion ne tient pas : la présence s'effondre (" + presence + "\u00a0%) et l'apprentissage avec. Garder en tête le mirage « plus d'immersion = plus d'apprentissage » (Makransky et al. (2019)).";
     }
     // Compétition CAMIL explicite (fenêtre 45-55).
     if (compete){
-      msg += " <em>Présence élevée mais conception à la limite : elle risque de cannibaliser l'apprentissage factuel (Makransky et al., 2019).</em>";
+      msg += " <em>Présence élevée mais conception à la limite : elle risque de cannibaliser l'apprentissage factuel (Makransky et al. (2019)).</em>";
     }
     // Zone morte du plancher extr=8 (conception saturée).
     if (extr === 8 && v >= 20){
@@ -1641,7 +1666,7 @@
     design.setAttribute('aria-valuenow', q);
     design.setAttribute('aria-valuetext', dlevel + " — " + q + " / 100");
     stack.setAttribute('aria-label',
-      "Charge cognitive (capacité de la mémoire de travail, 100 %) : intrinsèque " + INTR + " %, extrinsèque " + extr + " %, germane " + germ + " %. Présence (CAMIL) " + presence + " %.");
+      "Charge cognitive (capacité de la mémoire de travail, 100 %) : intrinsèque " + INTR + "\u00a0%, extrinsèque " + extr + "\u00a0%, germane " + germ + "\u00a0%. Présence (CAMIL) " + presence + "\u00a0%.");
     interp.innerHTML = msg;
   }
   slider.addEventListener('input', updateSlider);
@@ -1678,7 +1703,7 @@
       const open = card.classList.toggle('open');
       card.setAttribute('aria-expanded', open ? 'true' : 'false');
     };
-    card.addEventListener('click', toggle);
+    card.addEventListener('click', (e) => { if (e.target.closest('a')) return; toggle(); });
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
     });
@@ -1717,7 +1742,7 @@
         verbs:"exécuter · mettre en œuvre · utiliser · résoudre · démontrer" },
       { n:4, fr:"Analyser", en:"Analyze", col:"--teal",
         desc:"Décomposer un ensemble en ses parties et établir les relations entre elles.",
-        verbs:"différencier · organiser · comparer · attribuer · structurer" },
+        verbs:"différencier · organiser · contraster · attribuer · structurer" },
       { n:5, fr:"Évaluer", en:"Evaluate", col:"--violet",
         desc:"Porter un jugement argumenté à partir de critères et de normes explicites.",
         verbs:"critiquer · juger · justifier · vérifier · argumenter" },
@@ -1861,7 +1886,7 @@
       ]
     },
     affect: {
-      q: "Mesures-tu l'apprentissage factuel en plus de la motivation ?",
+      q: "L'apprentissage factuel est-il mesuré en plus de la motivation ?",
       theory: { label: "Biais", text: "illusion de compétence", href: "#biais" },
       opts: [
         { label: "Oui, les deux sont mesurés séparément", next: "R_VR_affect" },
@@ -1873,12 +1898,12 @@
   const results = {
     R_2D_complex: { title: "→ Multimédia 2D, priorité absolue au contrôle de charge", text: "Contenu complexe : privilégie la segmentation, le pré-entraînement, la signalisation et la modalité vocale. L'immersion ajouterait une charge extrinsèque que ce contenu ne peut pas se permettre." },
     R_2D_simple: { title: "→ Multimédia 2D standard", text: "Contenu simple : les principes de cohérence, contiguïté et multimédia suffisent largement. L'immersion apporterait un coût d'ingénierie sans bénéfice pédagogique clair ici." },
-    R_VR_proc: { title: "→ Immersion recommandée, avec pré-entraînement obligatoire", text: "C'est le terrain de prédilection de la RV (CAMIL) : agentivité et incarnation soutiennent l'apprentissage procédural/psychomoteur. Prévois impérativement un onboarding séparé du contenu pour absorber l'effet de nouveauté." },
+    R_VR_proc: { title: "→ Immersion recommandée, avec pré-entraînement fortement recommandé", text: "C'est le terrain de prédilection de la VR (CAMIL) : agentivité et incarnation soutiennent l'apprentissage procédural/psychomoteur. Prévoir un onboarding séparé du contenu pour absorber l'effet de nouveauté." },
     R_2D_proc: { title: "→ Multimédia 2D ou simulation simple suffisent", text: "Procédure surtout mentale/séquentielle : une animation avec narration (modalité, segmentation) est souvent aussi efficace, pour un coût de production bien moindre." },
-    R_VR_spatial: { title: "→ Immersion recommandée", text: "Le transfert spatial vers le réel est l'un des bénéfices les mieux documentés de la RV immersive. Combine avec signalisation et cohérence pour limiter la charge extrinsèque du champ de vision libre." },
-    R_2D_spatial: { title: "→ Modèle 3D interactif à l'écran (sans casque)", text: "Sans exigence de transfert réel, une exploration 3D sur écran capte l'essentiel du bénéfice spatial sans le coût matériel ni la charge extrinsèque propre au casque." },
-    R_VR_affect: { title: "→ Immersion justifiable, à condition de séparer les mesures", text: "Bonne pratique : la RV peut légitimement viser la motivation/l'empathie tant que l'apprentissage factuel est mesuré indépendamment, pour ne pas confondre « plus de présence » avec « plus d'apprentissage »." },
-    R_caution_affect: { title: "→ Prudence avant de choisir l'immersion", text: "Sans mesure de l'apprentissage réel, il est impossible de distinguer un gain pédagogique d'un simple effet de nouveauté ou d'un pic de motivation temporaire. Ajoute au minimum un indicateur factuel avant de généraliser le dispositif." }
+    R_VR_spatial: { title: "→ Immersion recommandée", text: "Le transfert spatial vers un contexte réel est un bénéfice régulièrement mis en évidence pour la VR immersive. Combine avec signalisation et cohérence pour limiter la charge extrinsèque du champ de vision libre." },
+    R_2D_spatial: { title: "→ Modèle 3D interactif à l'écran (sans casque)", text: "Sans exigence de transfert réel, une exploration 3D sur écran peut suffire à l'objectif visé, sans le coût matériel ni la charge extrinsèque propre au casque (hypothèse de conception)." },
+    R_VR_affect: { title: "→ Immersion justifiable, à condition de séparer les mesures", text: "Bonne pratique : la VR peut légitimement viser la motivation/l'empathie tant que l'apprentissage factuel est mesuré indépendamment, pour ne pas confondre « plus de présence » avec « plus d'apprentissage »." },
+    R_caution_affect: { title: "→ Prudence avant de choisir l'immersion", text: "Sans mesure de l'apprentissage réel, il est impossible de distinguer un gain pédagogique d'un simple effet de nouveauté ou d'un pic de motivation temporaire. Ajouter au minimum un indicateur factuel avant de généraliser le dispositif." }
   };
 
   let history = [];
@@ -2086,7 +2111,7 @@
         let best = null, bestRatio = 0;
         seen.forEach((ratio, id) => { if (ratio > bestRatio){ bestRatio = ratio; best = id; } });
         if (best) setActive(best);
-      }, { rootMargin: '-20% 0px -70% 0px', threshold: [0, 0.25, 0.5, 1] });
+      }, { rootMargin: '0px 0px 0px 0px', threshold: [0, 0.25, 0.5, 1] });
       sections.forEach(s => obs.observe(s));
     }
 
@@ -2095,7 +2120,7 @@
       const doc = document.documentElement;
       const max = doc.scrollHeight - doc.clientHeight;
       const pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
-      if (progress) progress.style.width = pct + '%';
+      if (progress) progress.style.width = pct + '\u00a0%';
       if (toTop) toTop.classList.toggle('show', doc.scrollTop > 600);
     }
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -2157,13 +2182,21 @@
         });
       });
     }
-    wireAccordion('.p-card.acc');
     wireAccordion('.measure');
   })();
 
   // ---- Flash de la référence ciblée au clic sur un reflink ----
   (function(){
     document.querySelectorAll('a.reflink[href^="#"]').forEach(a => {
+      const targetId = a.getAttribute('href').slice(1);
+      const entry = document.getElementById(targetId);
+      if (entry){
+        const raw = entry.textContent.replace(/\s+/g, ' ').trim();
+        const m = raw.match(/^(.+?\(\d{4}\))/);
+        const label = m ? m[1] : raw.slice(0, 60);
+        a.setAttribute('aria-label', 'Source : ' + label);
+        a.setAttribute('title', 'Source : ' + label);
+      }
       a.addEventListener('click', () => {
         const id = a.getAttribute('href').slice(1);
         const target = document.getElementById(id);
