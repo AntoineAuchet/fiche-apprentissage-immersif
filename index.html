@@ -240,6 +240,7 @@
     background:linear-gradient(90deg, var(--amber), var(--violet), var(--teal));
     outline:none; margin:0;
   }
+  input[type=range]:focus-visible{ outline:2px solid var(--teal); outline-offset:4px; }
   input[type=range]#designSlider{
     background:linear-gradient(90deg, var(--red-soft), var(--teal));
   }
@@ -775,31 +776,31 @@
       <div>
         <div class="pg-header"><span class="tag reduce">Réduire le traitement superflu</span></div>
         <div class="card-grid">
-          <div class="p-card" data-dots="3">
+          <div class="p-card" data-dots="3" tabindex="0" role="button" aria-expanded="false">
             <div class="p-name">Cohérence</div>
             <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet fort</span></div>
             <div class="p-hint">Sélectionner pour le détail</div>
             <div class="p-detail">Exclure mots, images ou sons intéressants mais non essentiels. Chaque élément supplémentaire consomme des ressources sans servir l'objectif pédagogique. <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 0,86)</span> <a class="reflink" href="#ref-mayer-2024">↗</a> <a class="reflink" href="#ref-mayer-fiorella-2014">↗</a></div>
           </div>
-          <div class="p-card" data-dots="2">
+          <div class="p-card" data-dots="2" tabindex="0" role="button" aria-expanded="false">
             <div class="p-name">Signalisation</div>
             <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet modéré</span></div>
             <div class="p-hint">Sélectionner pour le détail</div>
             <div class="p-detail">Ajouter des repères (flèches, surlignage, titres) qui guident l'attention vers l'information essentielle et sa structure. <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 0,69)</span> <a class="reflink" href="#ref-mayer-2024">↗</a></div>
           </div>
-          <div class="p-card" data-dots="1">
+          <div class="p-card" data-dots="1" tabindex="0" role="button" aria-expanded="false">
             <div class="p-name">redondance</div>
             <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet faible</span></div>
             <div class="p-hint">Sélectionner pour le détail</div>
             <div class="p-detail">Éviter de présenter le même texte à l'écran et à l'oral en même temps qu'une image : le canal visuel est alors saturé par la lecture et l'image. <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 0,10)</span> <a class="reflink" href="#ref-mayer-2024">↗</a></div>
           </div>
-          <div class="p-card" data-dots="3">
+          <div class="p-card" data-dots="3" tabindex="0" role="button" aria-expanded="false">
             <div class="p-name">Contiguïté spatiale</div>
             <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet fort</span></div>
             <div class="p-hint">Sélectionner pour le détail</div>
             <div class="p-detail">Placer le texte près de l'élément graphique qu'il décrit, pour éviter une recherche visuelle coûteuse (effet d'attention partagée). <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 0,82)</span> <a class="reflink" href="#ref-mayer-2024">↗</a></div>
           </div>
-          <div class="p-card" data-dots="3">
+          <div class="p-card" data-dots="3" tabindex="0" role="button" aria-expanded="false">
             <div class="p-name">Contiguïté temporelle</div>
             <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet fort</span></div>
             <div class="p-hint">Sélectionner pour le détail</div>
@@ -811,19 +812,19 @@
       <div>
         <div class="pg-header"><span class="tag manage">Gérer le traitement essentiel</span></div>
         <div class="card-grid">
-          <div class="p-card" data-dots="2">
+          <div class="p-card" data-dots="2" tabindex="0" role="button" aria-expanded="false">
             <div class="p-name">Segmentation</div>
             <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet modéré</span></div>
             <div class="p-hint">Sélectionner pour le détail</div>
             <div class="p-detail">Découper une leçon continue en segments courts contrôlés par l'apprenant, plutôt qu'une unité continue imposée. <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 0,67)</span> <a class="reflink" href="#ref-mayer-2024">↗</a> <a class="reflink" href="#ref-mayer-pilegard-2014">↗</a></div>
           </div>
-          <div class="p-card" data-dots="2">
+          <div class="p-card" data-dots="2" tabindex="0" role="button" aria-expanded="false">
             <div class="p-name">Pré-entraînement</div>
             <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet modéré</span></div>
             <div class="p-hint">Sélectionner pour le détail</div>
             <div class="p-detail">Enseigner en amont le nom et les caractéristiques des concepts clés, pour libérer des ressources lors de l'apprentissage principal. <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 0,78)</span> <a class="reflink" href="#ref-mayer-2024">↗</a></div>
           </div>
-          <div class="p-card" data-dots="3">
+          <div class="p-card" data-dots="3" tabindex="0" role="button" aria-expanded="false">
             <div class="p-name">Modalité</div>
             <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet fort</span></div>
             <div class="p-hint">Sélectionner pour le détail</div>
@@ -835,25 +836,25 @@
       <div>
         <div class="pg-header"><span class="tag foster">Favoriser le traitement génératif</span></div>
         <div class="card-grid">
-          <div class="p-card" data-dots="3">
+          <div class="p-card" data-dots="3" tabindex="0" role="button" aria-expanded="false">
             <div class="p-name">Multimédia</div>
             <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet fort</span></div>
             <div class="p-hint">Sélectionner pour le détail</div>
             <div class="p-detail">Les gens apprennent mieux avec des mots et des images qu'avec des mots seuls — à condition que l'image soit pertinente et bien intégrée. <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 1,35)</span> <a class="reflink" href="#ref-mayer-2024">↗</a></div>
           </div>
-          <div class="p-card" data-dots="3">
+          <div class="p-card" data-dots="3" tabindex="0" role="button" aria-expanded="false">
             <div class="p-name">Personnalisation</div>
             <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet fort</span></div>
             <div class="p-hint">Sélectionner pour le détail</div>
             <div class="p-detail">Un style conversationnel et des personnages/agents pédagogiques favorisent l'engagement et le traitement actif, sans excès (l'effet peut s'inverser si l'agent distrait). <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 1,00)</span> <a class="reflink" href="#ref-mayer-2024">↗</a></div>
           </div>
-          <div class="p-card" data-dots="2">
+          <div class="p-card" data-dots="2" tabindex="0" role="button" aria-expanded="false">
             <div class="p-name">Voix</div>
             <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet modéré</span></div>
             <div class="p-hint">Sélectionner pour le détail</div>
             <div class="p-detail">Une voix humaine amicale est souvent préférée à une voix synthétique, mais l'effet mesuré sur l'apprentissage reste inconsistant selon les études. <span style="color:var(--text-faint);font-size:.85em;">(d ≈ 0,74)</span> <a class="reflink" href="#ref-mayer-2024">↗</a></div>
           </div>
-          <div class="p-card" data-dots="1">
+          <div class="p-card" data-dots="1" tabindex="0" role="button" aria-expanded="false">
             <div class="p-name">Image / incarnation</div>
             <div class="p-gauge"><div class="dots"></div><span class="gauge-label">effet faible</span></div>
             <div class="p-hint">Sélectionner pour le détail</div>
@@ -1571,19 +1572,19 @@
       const sat = (1 - Math.exp(-v / SAT_K)) / (1 - Math.exp(-100 / SAT_K));
       const presence = Math.round(PRES_MAX * sat * (PRES_FLOOR_FACTOR + 0.85 * q / 100));
 
-    segI.style.width = INTR + '\u00a0%';
-    segE.style.width = extr + '\u00a0%';
-    segG.style.width = germ + '\u00a0%';
+    segI.style.width = INTR + '%';
+    segE.style.width = extr + '%';
+    segG.style.width = germ + '%';
     segG.classList.toggle('warn', germ >= 25 && germ < 40);
     segG.classList.toggle('risk', germ < 25);
-    barP.style.width = presence + '\u00a0%';
-    valI.textContent = INTR + '\u00a0%';
-    valE.textContent = extr + '\u00a0%';
-    valG.textContent = germ + '\u00a0%';
-    valP.textContent = presence + '\u00a0%';
-    tagI.innerHTML = '<span class="t-label">Intrinsèque</span><span class="t-val">' + INTR + '\u00a0%</span>';
-    tagE.innerHTML = '<span class="t-label">Extrinsèque</span><span class="t-val">' + extr + '\u00a0%</span>';
-    tagG.innerHTML = '<span class="t-label">Germane</span><span class="t-val">' + germ + '\u00a0%</span>';
+    barP.style.width = presence + '%';
+    valI.textContent = INTR + ' %';
+    valE.textContent = extr + ' %';
+    valG.textContent = germ + ' %';
+    valP.textContent = presence + ' %';
+    tagI.innerHTML = '<span class="t-label">Intrinsèque</span><span class="t-val">' + INTR + ' %</span>';
+    tagE.innerHTML = '<span class="t-label">Extrinsèque</span><span class="t-val">' + extr + ' %</span>';
+    tagG.innerHTML = '<span class="t-label">Germane</span><span class="t-val">' + germ + ' %</span>';
 
     // Badge d'adéquation : combine charge germane restante, qualité de conception,
         // présence mobilisée et compétition CAMIL (Makransky).
@@ -1642,15 +1643,15 @@
     //   support (immersion) + conception -> charge extrinsèque -> place germane restante -> (présence CAMIL).
     let msg;
     if (germ >= 50){
-      msg = "<strong>" + level + ", " + dlevel + ".</strong> La conception libère largement la capacité : il reste environ <strong>" + germ + "\u00a0% de charge germane utile</strong> pour l'apprentissage génératif. Les principes de Mayer font pleinement leur effet.";
+      msg = "<strong>" + level + ", " + dlevel + ".</strong> La conception libère largement la capacité : il reste environ <strong>" + germ + " % de charge germane utile</strong> pour l'apprentissage génératif. Les principes de Mayer font pleinement leur effet.";
       if (is2D) msg += " En 2D, la présence est nulle par définition (CAMIL ne s'applique qu'en immersion) : c'est <strong>optimal pour l'apprentissage, sans bénéfice immersif</strong>.";
-      else msg += " En VR, la présence atteint <strong>" + presence + "\u00a0%</strong> : bénéfice immersif réel, sans cannibaliser l'apprentissage factuel.";
+      else msg += " En VR, la présence atteint <strong>" + presence + " %</strong> : bénéfice immersif réel, sans cannibaliser l'apprentissage factuel.";
     } else if (germ >= 40){
-      msg = "<strong>" + level + ", " + dlevel + ".</strong> Charge germane confortable (<strong>" + germ + "\u00a0%</strong>) : assez de place utile. Présence (" + presence + "\u00a0%) et apprentissage peuvent coexister.";
+      msg = "<strong>" + level + ", " + dlevel + ".</strong> Charge germane confortable (<strong>" + germ + " %</strong>) : assez de place utile. Présence (" + presence + " %) et apprentissage peuvent coexister.";
     } else if (germ >= 25){
       msg = "<strong>" + level + ", " + dlevel + ".</strong> Tension : l'extrinsèque rogne la germane (il reste <strong>" + (GERM_TENSION - germ) + " points avant le seuil d'alerte de 40 %</strong>). Renforcer signalisation et pré-entraînement pour éviter que la présence (CAMIL) ne cannibalise l'apprentissage factuel.";
     } else {
-      msg = "<strong>" + level + ", " + dlevel + ".</strong> L'extrinsèque sature la capacité (germane à <strong>" + germ + "\u00a0%</strong>, sous le seuil d'alerte). Sans conception, l'immersion ne tient pas : la présence s'effondre (" + presence + "\u00a0%) et l'apprentissage avec. Garder en tête le mirage « plus d'immersion = plus d'apprentissage » (Makransky et al. (2019)).";
+      msg = "<strong>" + level + ", " + dlevel + ".</strong> L'extrinsèque sature la capacité (germane à <strong>" + germ + " %</strong>, sous le seuil d'alerte). Sans conception, l'immersion ne tient pas : la présence s'effondre (" + presence + " %) et l'apprentissage avec. Garder en tête le mirage « plus d'immersion = plus d'apprentissage » (Makransky et al. (2019)).";
     }
     // Compétition CAMIL explicite (fenêtre 45-55).
     if (compete){
@@ -1666,7 +1667,7 @@
     design.setAttribute('aria-valuenow', q);
     design.setAttribute('aria-valuetext', dlevel + " — " + q + " / 100");
     stack.setAttribute('aria-label',
-      "Charge cognitive (capacité de la mémoire de travail, 100 %) : intrinsèque " + INTR + "\u00a0%, extrinsèque " + extr + "\u00a0%, germane " + germ + "\u00a0%. Présence (CAMIL) " + presence + "\u00a0%.");
+      "Charge cognitive (capacité de la mémoire de travail, 100 %) : intrinsèque " + INTR + " %, extrinsèque " + extr + " %, germane " + germ + " %. Présence (CAMIL) " + presence + " %.");
     interp.innerHTML = msg;
   }
   slider.addEventListener('input', updateSlider);
@@ -1950,7 +1951,7 @@
     if (node){
       qWrap.style.display = 'block';
       qWrap.innerHTML = `<div class="tree-question">${node.q}</div>
-        <div class="tree-options">${node.opts.map((o,i) => `<div class="tree-opt" data-i="${i}" tabindex="0" role="button">${o.label}</div>`).join('')}</div>`;
+        <div class="tree-options">${node.opts.map((o,i) => `<button type="button" class="tree-opt" data-i="${i}">${o.label}</button>`).join('')}</div>`;
       qWrap.querySelectorAll('.tree-opt').forEach(el => {
         const choose = () => {
           const opt = node.opts[parseInt(el.dataset.i,10)];
@@ -1964,7 +1965,6 @@
           }
         };
         el.addEventListener('click', choose);
-        el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choose(); } });
       });
     }
   }
@@ -2120,7 +2120,7 @@
       const doc = document.documentElement;
       const max = doc.scrollHeight - doc.clientHeight;
       const pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
-      if (progress) progress.style.width = pct + '\u00a0%';
+      if (progress) progress.style.width = pct + '%';
       if (toTop) toTop.classList.toggle('show', doc.scrollTop > 600);
     }
     window.addEventListener('scroll', onScroll, { passive: true });
